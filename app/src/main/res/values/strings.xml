@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Semana da Computação</string>
+    <string name="novo_participante">Novo participante</string>
+    <string name="novo_evento">Novo evento</string>
+    <string name="lista_de_participantes">Lista de participantes</string>
+    <string name="lista_de_eventos">Lista de eventos</string>
+    <string name="nome_completo">Nome completo</string>
+    <string name="seu_email_com">seu@email.com</string>
+    <string name="cpf">CPF</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="voltar">Voltar</string>
 </resources>
