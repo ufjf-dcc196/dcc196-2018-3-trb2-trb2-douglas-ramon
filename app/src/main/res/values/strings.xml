@@ -9,4 +9,11 @@
     <string name="cpf">CPF</string>
     <string name="cadastrar">Cadastrar</string>
     <string name="voltar">Voltar</string>
+    <string name="titulo">Título</string>
+    <string name="data">Data</string>
+    <string name="hora">Hora</string>
+    <string name="facilitador">Facilitador</string>
+    <string name="descricao">Descrição</string>
+    <string name="dd_mm_aaaa">dd/mm/aaaa</string>
+    <string name="hh_mm">hh:mm</string>
 </resources>

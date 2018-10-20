@@ -24,5 +24,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnNovoEvento = (Button) findViewById(R.id.btn_novo_evento);
+        btnNovoEvento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, EventoNovoActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

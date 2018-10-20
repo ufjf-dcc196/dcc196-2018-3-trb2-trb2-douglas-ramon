@@ -7,24 +7,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class ParticipanteNovoActivity extends AppCompatActivity {
+public class EventoNovoActivity extends AppCompatActivity {
 
-    private Button btnCadastrarParticipante;
     private Button btnVoltar;
-    private EditText edtNomeCompleto;
-    private EditText edtEmail;
-    private EditText edtCpf;
+    private Button btnCadastrarEvento;
+    private EditText edtTitulo;
+    private EditText edtData;
+    private EditText edtHora;
+    private EditText edtFacilitador;
+    private EditText edtDescricao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_participante_novo);
+        setContentView(R.layout.activity_evento_novo);
 
-        btnVoltar = (Button) findViewById(R.id.btn_voltar_participante_novo);
+        btnVoltar = (Button) findViewById(R.id.btn_voltar_evento_novo);
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ParticipanteNovoActivity.this, MainActivity.class);
+                Intent intent = new Intent(EventoNovoActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

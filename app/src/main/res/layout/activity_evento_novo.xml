@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ParticipanteNovoActivity">
+    tools:context=".EventoNovoActivity">
 
     <EditText
-        android:id="@+id/edt_nome_completo"
+        android:id="@+id/edt_titulo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -16,15 +16,15 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:ems="10"
-        android:hint="@string/nome_completo"
+        android:hint="@string/titulo"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edt_email"
-        android:layout_width="0dp"
+        android:id="@+id/edt_data"
+        android:layout_width="165dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -32,14 +32,28 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:ems="10"
-        android:hint="@string/seu_email_com"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:hint="@string/dd_mm_aaaa"
+        android:inputType="date"
+        app:layout_constraintEnd_toStartOf="@+id/edt_hora"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_nome_completo" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_titulo" />
 
     <EditText
-        android:id="@+id/edt_cpf"
+        android:id="@+id/edt_hora"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:ems="10"
+        android:hint="@string/hh_mm"
+        android:inputType="time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_titulo" />
+
+    <EditText
+        android:id="@+id/edt_facilitador"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -48,14 +62,36 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:ems="10"
-        android:hint="@string/cpf"
-        android:inputType="number"
+        android:hint="@string/facilitador"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_email" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_data" />
+
+    <EditText
+        android:id="@+id/edt_descricao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:ems="10"
+        android:hint="@string/descricao"
+        android:inputType="textMultiLine"
+        android:gravity="top|start"
+        android:overScrollMode="always"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical"
+        android:lines="6"
+        android:scrollHorizontally="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_facilitador" />
 
     <Button
-        android:id="@+id/btn_cadastrar_participante"
+        android:id="@+id/btn_cadastrar_evento"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -66,10 +102,10 @@
         android:text="@string/cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_cpf" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_descricao" />
 
     <Button
-        android:id="@+id/btn_voltar_participante_novo"
+        android:id="@+id/btn_voltar_evento_novo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -80,5 +116,5 @@
         android:text="@string/voltar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_cadastrar_participante" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_cadastrar_evento" />
 </android.support.constraint.ConstraintLayout>
