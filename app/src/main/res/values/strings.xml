@@ -16,4 +16,5 @@
     <string name="descricao">Descrição</string>
     <string name="dd_mm_aaaa">dd/mm/aaaa</string>
     <string name="hh_mm">hh:mm</string>
+    <string name="cadastro_de_novo_evento">Cadastro de novo evento</string>
 </resources>
