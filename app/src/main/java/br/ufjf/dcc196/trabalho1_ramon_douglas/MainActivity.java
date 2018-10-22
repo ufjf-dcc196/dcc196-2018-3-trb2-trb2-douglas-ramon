@@ -17,11 +17,21 @@ public class MainActivity extends AppCompatActivity {
     private Button btnNovoParticipante;
     private Button btnNovoEvento;
     private RecyclerView rclParticipantes;
+    private RecyclerView rclEventos;
 
     public static List<String> participantes = new ArrayList<String>(){{
         add("Ramon Larivoir");
         add("Douglas Baumgratz");
         add("Igor Knop");
+        add("João da Silva");
+        add("José de Souza");
+    }};
+
+    public static List<String> eventos = new ArrayList<String>(){{
+        add("Curso Android");
+        add("Palestra Igor");
+        add("Curso Java");
+        add("Mesa redonda");
     }};
 
     @Override
@@ -49,7 +59,36 @@ public class MainActivity extends AppCompatActivity {
 
         rclParticipantes = (RecyclerView) findViewById(R.id.rcl_participantes);
         rclParticipantes.setLayoutManager(new LinearLayoutManager(this));
-        final ParticipanteAdapter adapter = new ParticipanteAdapter(participantes);
-        rclParticipantes.setAdapter(adapter);
+        final ParticipanteAdapter participanteAdapter = new ParticipanteAdapter(participantes);
+        rclParticipantes.setAdapter(participanteAdapter);
+        participanteAdapter.setOnParticipanteClickListener(new ParticipanteAdapter.OnParticipanteClickListener() {
+            @Override
+            public void onParticipanteClick(View view, int position) {
+            }
+        });
+        participanteAdapter.setOnParticipanteLongClickListener(new ParticipanteAdapter.OnParticipanteLongClickListener() {
+            @Override
+            public void onParticipanteLongClickListener(View view, int position) {
+                participantes.remove(position);
+                participanteAdapter.notifyItemChanged(position);
+            }
+        });
+
+        rclEventos = (RecyclerView) findViewById(R.id.rcl_eventos);
+        rclEventos.setLayoutManager(new LinearLayoutManager(this));
+        final EventoAdapter eventoAdapter = new EventoAdapter(eventos);
+        rclEventos.setAdapter(eventoAdapter);
+        eventoAdapter.setOnEventoClickListener(new EventoAdapter.OnEventoClickListener() {
+            @Override
+            public void onEventoClick(View view, int position) {
+            }
+        });
+        eventoAdapter.setOnEventoLongClickListener(new EventoAdapter.OnEventoLongClickListener() {
+            @Override
+            public void onEventoLongClickListener(View view, int position) {
+                eventos.remove(position);
+                eventoAdapter.notifyItemChanged(position);
+            }
+        });
     }
 }

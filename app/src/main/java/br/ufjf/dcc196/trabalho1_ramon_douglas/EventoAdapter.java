@@ -10,17 +10,17 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapter.ViewHolder> {
+public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder> {
     private List<String> participantes;
-    private OnParticipanteClickListener listener;
-    private OnParticipanteLongClickListener longClickListener;
+    private OnEventoClickListener listener;
+    private OnEventoLongClickListener longClickListener;
 
-    public interface OnParticipanteClickListener {
-        void onParticipanteClick(View view, int position);
+    public interface OnEventoClickListener {
+        void onEventoClick(View view, int position);
     }
 
-    public interface OnParticipanteLongClickListener {
-        void onParticipanteLongClickListener(View view, int position);
+    public interface OnEventoLongClickListener {
+        void onEventoLongClickListener(View view, int position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
@@ -35,7 +35,7 @@ public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapte
                     if(listener != null) {
                         int position = getAdapterPosition();
                         if(position != RecyclerView.NO_POSITION) {
-                            listener.onParticipanteClick(v, position);
+                            listener.onEventoClick(v, position);
                         }
                     }
                 }
@@ -47,7 +47,7 @@ public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapte
                     if (longClickListener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-                            longClickListener.onParticipanteLongClickListener(v, position);
+                            longClickListener.onEventoLongClickListener(v, position);
                         }
                     }
                     return false;
@@ -60,7 +60,7 @@ public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapte
             if(listener != null) {
                 int position = getAdapterPosition();
                 if(position != RecyclerView.NO_POSITION) {
-                    listener.onParticipanteClick(v, position);
+                    listener.onEventoClick(v, position);
                 }
             }
 
@@ -71,7 +71,7 @@ public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapte
             if(longClickListener != null) {
                 int position = getAdapterPosition();
                 if(position != RecyclerView.NO_POSITION) {
-                    longClickListener.onParticipanteLongClickListener(v, position);
+                    longClickListener.onEventoLongClickListener(v, position);
                 }
             }
             return false;
@@ -83,8 +83,8 @@ public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         Context context = viewGroup.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View linhaParticipante = inflater.inflate(R.layout.lista_layout, viewGroup, false);
-        ViewHolder viewHolder = new ViewHolder(linhaParticipante);
+        View linhaEvento = inflater.inflate(R.layout.lista_layout, viewGroup, false);
+        ViewHolder viewHolder = new ViewHolder(linhaEvento);
 
         return viewHolder;
     }
@@ -99,15 +99,15 @@ public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapte
         return participantes.size();
     }
 
-    public ParticipanteAdapter(List<String> participantes) {
+    public EventoAdapter(List<String> participantes) {
         this.participantes = participantes;
     }
 
-    public void setOnParticipanteClickListener(OnParticipanteClickListener listener) {
+    public void setOnEventoClickListener(OnEventoClickListener listener) {
         this.listener = listener;
     }
 
-    public void setOnParticipanteLongClickListener(OnParticipanteLongClickListener longClickListener) {
+    public void setOnEventoLongClickListener(OnEventoLongClickListener longClickListener) {
         this.longClickListener = longClickListener;
     }
 }

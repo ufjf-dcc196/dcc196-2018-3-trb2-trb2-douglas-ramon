@@ -8,7 +8,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcl_participantes"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="147dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -37,7 +37,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcl_eventos"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="147dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
