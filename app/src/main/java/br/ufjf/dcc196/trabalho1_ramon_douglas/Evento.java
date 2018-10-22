@@ -16,6 +16,22 @@ public class Evento {
     public Evento() {
     }
 
+    public Evento(String titulo, String data, Calendar hora, String facilitador, String descricao, List<Participante> participantes) {
+        this.titulo = titulo;
+        this.data = data;
+        this.hora = hora;
+        this.facilitador = facilitador;
+        this.descricao = descricao;
+        this.participantes = participantes;
+    }
+
+    public List<Participante> getParticipantes() {
+        return participantes;
+    }
+
+    public void setParticipantes(List<Participante> participantes) {
+        this.participantes = participantes;
+    }
 
     public String getTitulo() {
         return titulo;
