@@ -11,6 +11,7 @@ public class Evento {
     private Calendar hora;
     private String facilitador;
     private String descricao;
+    private List<Participante> participantes;
 
     public Evento() {
     }
