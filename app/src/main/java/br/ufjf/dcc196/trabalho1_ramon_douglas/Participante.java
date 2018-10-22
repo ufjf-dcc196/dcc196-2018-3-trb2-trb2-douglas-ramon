@@ -7,14 +7,24 @@ public class Participante {
     private String nome;
     private String email;
     private String cpf;
+    private List<Evento> eventos;
 
     public Participante() {
     }
 
-    public Participante(String nome, String email, String cpf) {
+    public Participante(String nome, String email, String cpf, List<Evento> eventos) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
+        this.eventos = eventos;
+    }
+
+    public List<Evento> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(List<Evento> eventos) {
+        this.eventos = eventos;
     }
 
     public String getNome() {
