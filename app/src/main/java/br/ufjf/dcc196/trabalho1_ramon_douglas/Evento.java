@@ -1,23 +1,24 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Evento {
+public class Evento implements Serializable {
     private String titulo;
     private String facilitador;
     private String data;
-    private Calendar hora;
+    private String hora;
     private String descricao;
     private List<Participante> participantes;
 
     public Evento() {
     }
 
-    public Evento(String titulo, String facilitador, String data, Calendar hora, String descricao) {
+    public Evento(String titulo, String facilitador, String data, String hora, String descricao) {
         this.titulo = titulo;
         this.facilitador = facilitador;
         this.data = data;
@@ -25,7 +26,7 @@ public class Evento {
         this.descricao = descricao;
     }
 
-    public Evento(String titulo, String data, Calendar hora, String facilitador, String descricao, List<Participante> participantes) {
+    public Evento(String titulo, String data, String hora, String facilitador, String descricao, List<Participante> participantes) {
         this.titulo = titulo;
         this.data = data;
         this.hora = hora;
@@ -58,11 +59,11 @@ public class Evento {
         this.data = data;
     }
 
-    public Calendar getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(Calendar hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 

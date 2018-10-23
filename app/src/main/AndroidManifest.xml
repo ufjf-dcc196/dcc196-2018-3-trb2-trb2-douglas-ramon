@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ParticipanteNovoActivity" />
-        <activity android:name=".EventoNovoActivity"></activity>
+        <activity android:name=".EventoNovoActivity" />
+        <activity android:name=".ParticipanteDetalhesActivity"></activity>
     </application>
 
 </manifest>

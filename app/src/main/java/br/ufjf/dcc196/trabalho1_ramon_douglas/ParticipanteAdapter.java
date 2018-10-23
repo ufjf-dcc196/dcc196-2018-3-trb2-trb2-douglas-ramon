@@ -8,10 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapter.ViewHolder> {
-    private List<String> participantes;
+    private HashMap<String, Participante> participantes;
     private OnParticipanteClickListener listener;
     private OnParticipanteLongClickListener longClickListener;
 
@@ -91,7 +95,14 @@ public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.txtNome.setText(participantes.get(i));
+        Set<String> chaves = participantes.keySet();
+        List<Participante> p = new ArrayList<>();
+        for(Iterator<String> iterator = chaves.iterator(); iterator.hasNext();) {
+            String chave = iterator.next();
+            if(chave != null)
+                p.add(participantes.get(chave));
+        }
+        viewHolder.txtNome.setText(p.get(i).getNome());
     }
 
     @Override
@@ -99,7 +110,7 @@ public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapte
         return participantes.size();
     }
 
-    public ParticipanteAdapter(List<String> participantes) {
+    public ParticipanteAdapter(HashMap<String, Participante> participantes) {
         this.participantes = participantes;
     }
 

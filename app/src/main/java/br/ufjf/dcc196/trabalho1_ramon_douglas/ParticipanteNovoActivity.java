@@ -39,12 +39,17 @@ public class ParticipanteNovoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent resultadoParticipante = new Intent();
+
                 String nome = edtNomeCompleto.getText().toString();
                 String email = edtEmail.getText().toString();
                 String cpf = edtCpf.getText().toString();
+
                 Participante p = new Participante(nome, email, cpf);
+                MainActivity.participantes.put(p.getNome(), p);
+
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("participante", p);
+
                 resultadoParticipante.putExtras(bundle);
                 setResult(Activity.RESULT_OK, resultadoParticipante);
                 finish();
