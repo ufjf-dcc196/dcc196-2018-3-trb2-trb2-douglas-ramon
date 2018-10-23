@@ -1,6 +1,8 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String PARTICIPANTE_NOME = "nome";
+    public static final String PARTICIPANTE_EMAIL = "email";
+    public static final String PARTICIPANTE_CPF = "cpf";
+    public static final Evento EVENTO = new Evento();
+    public static final int REQUEST_PARTICIPANTE = 1;
+    public static final int REQUEST_EVENTO = 2;
 
     private Button btnNovoParticipante;
     private Button btnNovoEvento;
@@ -78,11 +87,6 @@ public class MainActivity extends AppCompatActivity {
         rclEventos.setLayoutManager(new LinearLayoutManager(this));
         final EventoAdapter eventoAdapter = new EventoAdapter(eventos);
         rclEventos.setAdapter(eventoAdapter);
-        eventoAdapter.setOnEventoClickListener(new EventoAdapter.OnEventoClickListener() {
-            @Override
-            public void onEventoClick(View view, int position) {
-            }
-        });
         eventoAdapter.setOnEventoLongClickListener(new EventoAdapter.OnEventoLongClickListener() {
             @Override
             public void onEventoLongClickListener(View view, int position) {
@@ -90,5 +94,24 @@ public class MainActivity extends AppCompatActivity {
                 eventoAdapter.notifyItemChanged(position);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == MainActivity.REQUEST_PARTICIPANTE && resultCode == Activity.RESULT_OK && data != null) {
+            Bundle bundleResultadoParticipante = data.getExtras();
+            String nome = bundleResultadoParticipante.getString(MainActivity.PARTICIPANTE_NOME);
+            String email = bundleResultadoParticipante.getString(MainActivity.PARTICIPANTE_EMAIL);
+            int cpf = Integer.parseInt(bundleResultadoParticipante.getString(MainActivity.PARTICIPANTE_CPF));
+
+            Participante p = new Participante(nome, email, cpf);
+
+            participantes.add(p.getNome());
+
+            Toast.makeText(getApplicationContext(), "Nome: " + p.getNome(), Toast.LENGTH_SHORT).show();
+
+        }
     }
 }
