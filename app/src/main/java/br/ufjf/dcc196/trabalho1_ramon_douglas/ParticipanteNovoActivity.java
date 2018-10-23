@@ -42,9 +42,10 @@ public class ParticipanteNovoActivity extends AppCompatActivity {
                 String nome = edtNomeCompleto.getText().toString();
                 String email = edtEmail.getText().toString();
                 String cpf = edtCpf.getText().toString();
-                resultadoParticipante.putExtra(MainActivity.PARTICIPANTE_NOME, nome);
-                resultadoParticipante.putExtra(MainActivity.PARTICIPANTE_EMAIL, email);
-                resultadoParticipante.putExtra(MainActivity.PARTICIPANTE_CPF, cpf);
+                Participante p = new Participante(nome, email, cpf);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("participante", p);
+                resultadoParticipante.putExtras(bundle);
                 setResult(Activity.RESULT_OK, resultadoParticipante);
                 finish();
             }

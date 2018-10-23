@@ -16,10 +16,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String PARTICIPANTE_NOME = "nome";
-    public static final String PARTICIPANTE_EMAIL = "email";
-    public static final String PARTICIPANTE_CPF = "cpf";
-    public static final Evento EVENTO = new Evento();
     public static final int REQUEST_PARTICIPANTE = 1;
     public static final int REQUEST_EVENTO = 2;
 
@@ -52,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         btnNovoParticipante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ParticipanteNovoActivity.class);
-                startActivity(intent);
+                Intent intentParticipante = new Intent(MainActivity.this, ParticipanteNovoActivity.class);
+                startActivityForResult(intentParticipante, MainActivity.REQUEST_PARTICIPANTE);
             }
         });
 
@@ -61,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         btnNovoEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, EventoNovoActivity.class);
-                startActivity(intent);
+                Intent intentEvento = new Intent(MainActivity.this, EventoNovoActivity.class);
+                startActivity(intentEvento);
             }
         });
 
@@ -102,11 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
         if(requestCode == MainActivity.REQUEST_PARTICIPANTE && resultCode == Activity.RESULT_OK && data != null) {
             Bundle bundleResultadoParticipante = data.getExtras();
-            String nome = bundleResultadoParticipante.getString(MainActivity.PARTICIPANTE_NOME);
-            String email = bundleResultadoParticipante.getString(MainActivity.PARTICIPANTE_EMAIL);
-            String cpf = bundleResultadoParticipante.getString(MainActivity.PARTICIPANTE_CPF);
 
-            Participante p = new Participante(nome, email, cpf);
+            Participante p = (Participante) bundleResultadoParticipante.getSerializable("participante");
 
             participantes.add(p.getNome());
 
