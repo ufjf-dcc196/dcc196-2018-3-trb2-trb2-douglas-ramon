@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             Bundle bundleResultadoParticipante = data.getExtras();
             String nome = bundleResultadoParticipante.getString(MainActivity.PARTICIPANTE_NOME);
             String email = bundleResultadoParticipante.getString(MainActivity.PARTICIPANTE_EMAIL);
-            int cpf = Integer.parseInt(bundleResultadoParticipante.getString(MainActivity.PARTICIPANTE_CPF));
+            String cpf = bundleResultadoParticipante.getString(MainActivity.PARTICIPANTE_CPF);
 
             Participante p = new Participante(nome, email, cpf);
 
