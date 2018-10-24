@@ -110,7 +110,9 @@ public class MainActivity extends AppCompatActivity {
         eventoAdapter.setOnEventoClickListener(new EventoAdapter.OnEventoClickListener() {
             @Override
             public void onEventoClick(View view, int position) {
-
+                Intent intentPartipanteDetalhe = new Intent(MainActivity.this, EventoDetalhesActivity.class);
+                intentPartipanteDetalhe.putExtra("posicao", position);
+                startActivity(intentPartipanteDetalhe);
             }
         });
         eventoAdapter.setOnEventoLongClickListener(new EventoAdapter.OnEventoLongClickListener() {

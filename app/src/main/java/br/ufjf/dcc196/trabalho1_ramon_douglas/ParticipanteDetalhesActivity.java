@@ -46,7 +46,7 @@ public class ParticipanteDetalhesActivity extends AppCompatActivity {
         txtEmail.setText(p.getEmail());
         txtCpf.setText(p.getCpf());
 
-        rclEventosInscritos = (RecyclerView) findViewById(R.id.rcl_eventos_inscritos);
+        rclEventosInscritos = (RecyclerView) findViewById(R.id.rcl_participantes_inscritos);
         rclEventosInscritos.setLayoutManager(new LinearLayoutManager(this));
         final EventoAdapter eventoAdapter = new EventoAdapter(p.getEventos());
         rclEventosInscritos.setAdapter(eventoAdapter);
