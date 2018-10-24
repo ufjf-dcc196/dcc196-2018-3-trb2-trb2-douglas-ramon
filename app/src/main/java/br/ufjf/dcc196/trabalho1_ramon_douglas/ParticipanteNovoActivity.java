@@ -45,7 +45,7 @@ public class ParticipanteNovoActivity extends AppCompatActivity {
                 String cpf = edtCpf.getText().toString();
 
                 Participante p = new Participante(nome, email, cpf);
-                MainActivity.participantes.put(p.getNome(), p);
+                MainActivity.participantes.add(p);
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("participante", p);

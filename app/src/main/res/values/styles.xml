@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="EditTextSemLinhaTheme">
+        <item name="colorControlNormal">@android:color/transparent</item>
+        <item name="colorControlActivated">@android:color/transparent</item>
+    </style>
 </resources>

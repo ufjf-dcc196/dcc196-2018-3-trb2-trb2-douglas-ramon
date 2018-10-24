@@ -25,28 +25,39 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rclParticipantes;
     private RecyclerView rclEventos;
 
-    public static HashMap<String, Participante> participantes = new HashMap<String, Participante>(){{
-        Participante p1 = new Participante("Ramon Larivoir", "rlarivoir@gmail.com", "11111111111");
-        Participante p2 = new Participante("Douglas Baumgratz", "douglas@gmail.com", "22222222222");
-        Participante p3 = new Participante("Igor Knop", "igor@gmail.com", "3333333333");
-        Participante p4 = new Participante("João da Silva", "joao@gmail.com", "44444444444");
-        Participante p5 = new Participante("José de Souza", "jose@gmail.com", "55555555555");
-        put(p1.getCpf(), p1);
-        put(p2.getCpf(), p2);
-        put(p3.getCpf(), p3);
-        put(p4.getCpf(), p4);
-        put(p5.getCpf(), p5);
+    public static List<Participante> participantes = new ArrayList<Participante>(){{
+        Participante p0 = new Participante("Ramon Larivoir", "rlarivoir@gmail.com", "11111111111");
+        Participante p1 = new Participante("Douglas Baumgratz", "douglas@gmail.com", "22222222222");
+        Participante p2 = new Participante("Igor Knop", "igor@gmail.com", "3333333333");
+        Participante p3 = new Participante("João da Silva", "joao@gmail.com", "44444444444");
+        Participante p4 = new Participante("José de Souza", "jose@gmail.com", "55555555555");
+        add(p0);
+        add(p1);
+        add(p2);
+        add(p3);
+        add(p4);
     }};
 
-    public static HashMap<String, Evento> eventos = new HashMap<String, Evento>(){{
-        Evento e1 = new Evento("Curso Android", "Igor Knop", "20/10/2018" , "20:00" , "Curso de introdução ao desenvolvimento android.");
-        Evento e2 = new Evento("Palestra Igor", "Igor Knop", "21/10/2018" , "17:00" , "Palestra sobre clean code.");
-        Evento e3 = new Evento("Curso Java", "Jairo Souza", "22/10/2018" , "19:00" , "Curso avançado de Java.");
-        Evento e4 = new Evento("Mesa redonda", "Luciana Campos", "21/10/2018" , "21:00" , "Mesa redonda para debater as novas tendências do mercado.");
-        put(e1.getTitulo(), e1);
-        put(e2.getTitulo(), e2);
-        put(e3.getTitulo(), e3);
-        put(e4.getTitulo(), e4);
+    public static List<Evento> eventos = new ArrayList<Evento>(){{
+        Evento e0 = new Evento("Curso Android", "Igor Knop", "20/10/2018" , "20:00" , "Curso de introdução ao desenvolvimento android.");
+        Evento e1 = new Evento("Palestra Igor", "Igor Knop", "21/10/2018" , "17:00" , "Palestra sobre clean code.");
+        Evento e2 = new Evento("Curso Java", "Jairo Souza", "22/10/2018" , "19:00" , "Curso avançado de Java.");
+        Evento e3 = new Evento("Mesa redonda", "Luciana Campos", "21/10/2018" , "21:00" , "Mesa redonda para debater as novas tendências do mercado.");
+        add(e0);
+        add(e1);
+        add(e2);
+        add(e3);
+
+        participantes.get(0).getEventos().add(e0);
+        participantes.get(0).getEventos().add(e3);
+        participantes.get(0).getEventos().add(e1);
+        participantes.get(1).getEventos().add(e2);
+        participantes.get(2).getEventos().add(e2);
+        participantes.get(3).getEventos().add(e3);
+        participantes.get(3).getEventos().add(e1);
+        participantes.get(4).getEventos().add(e3);
+        participantes.get(4).getEventos().add(e2);
+
     }};
 
     @Override
@@ -80,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onParticipanteClick(View view, int position) {
                 Intent intentPartipanteDetalhe = new Intent(MainActivity.this, ParticipanteDetalhesActivity.class);
+                intentPartipanteDetalhe.putExtra("idParticipante", position);
                 startActivity(intentPartipanteDetalhe);
             }
         });

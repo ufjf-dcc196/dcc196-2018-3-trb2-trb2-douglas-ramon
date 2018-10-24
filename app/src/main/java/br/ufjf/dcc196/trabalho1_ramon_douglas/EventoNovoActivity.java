@@ -51,7 +51,7 @@ public class EventoNovoActivity extends AppCompatActivity {
                 String hora = edtHora.getText().toString();
 
                 Evento e = new Evento(titulo, facilitador, data, hora, descricao);
-                MainActivity.eventos.put(e.getTitulo(), e);
+                MainActivity.eventos.add(e);
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("evento", e);

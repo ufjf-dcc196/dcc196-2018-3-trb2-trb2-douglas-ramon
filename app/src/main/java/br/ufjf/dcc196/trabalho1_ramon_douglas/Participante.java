@@ -1,6 +1,7 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Participante implements Serializable {
@@ -16,6 +17,7 @@ public class Participante implements Serializable {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
+        this.eventos = new ArrayList<Evento>();
     }
 
     public Participante(String nome, String email, String cpf, List<Evento> eventos) {

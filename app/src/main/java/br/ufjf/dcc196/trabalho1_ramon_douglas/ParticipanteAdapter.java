@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapter.ViewHolder> {
-    private HashMap<String, Participante> participantes;
+    private List<Participante> participantes;
     private OnParticipanteClickListener listener;
     private OnParticipanteLongClickListener longClickListener;
 
@@ -95,14 +95,7 @@ public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Set<String> chaves = participantes.keySet();
-        List<Participante> p = new ArrayList<>();
-        for(Iterator<String> iterator = chaves.iterator(); iterator.hasNext();) {
-            String chave = iterator.next();
-            if(chave != null)
-                p.add(participantes.get(chave));
-        }
-        viewHolder.txtNome.setText(p.get(i).getNome());
+        viewHolder.txtNome.setText(participantes.get(i).getNome());
     }
 
     @Override
@@ -110,7 +103,7 @@ public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapte
         return participantes.size();
     }
 
-    public ParticipanteAdapter(HashMap<String, Participante> participantes) {
+    public ParticipanteAdapter(List<Participante> participantes) {
         this.participantes = participantes;
     }
 

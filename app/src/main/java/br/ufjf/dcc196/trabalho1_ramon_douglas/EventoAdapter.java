@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder> {
-    private HashMap<String, Evento> eventos;
+    private List<Evento> eventos;
     private OnEventoClickListener listener;
     private OnEventoLongClickListener longClickListener;
 
@@ -95,14 +95,7 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Set<String> chaves = eventos.keySet();
-        List<Evento> e = new ArrayList<>();
-        for(Iterator<String> iterator = chaves.iterator(); iterator.hasNext();) {
-            String chave = iterator.next();
-            if(chave != null)
-                e.add(eventos.get(chave));
-        }
-        viewHolder.txtNome.setText(e.get(i).getTitulo());
+        viewHolder.txtNome.setText(eventos.get(i).getTitulo());
     }
 
     @Override
@@ -110,7 +103,7 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder
         return eventos.size();
     }
 
-    public EventoAdapter(HashMap<String, Evento> eventos) {
+    public EventoAdapter(List<Evento> eventos) {
         this.eventos = eventos;
     }
 

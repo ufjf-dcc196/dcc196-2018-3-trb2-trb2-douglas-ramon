@@ -17,4 +17,7 @@
     <string name="dd_mm_aaaa">dd/mm/aaaa</string>
     <string name="hh_mm">hh:mm</string>
     <string name="cadastro_de_novo_evento">Cadastro de novo evento</string>
+    <string name="detalhes_do_participante">Detalhes do participante</string>
+    <string name="nome">Nome:</string>
+    <string name="e_mail">E-mail:</string>
 </resources>
