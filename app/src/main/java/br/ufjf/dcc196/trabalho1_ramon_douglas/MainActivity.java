@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onParticipanteClick(View view, int position) {
                 Intent intentPartipanteDetalhe = new Intent(MainActivity.this, ParticipanteDetalhesActivity.class);
-                intentPartipanteDetalhe.putExtra("idParticipante", position);
+                intentPartipanteDetalhe.putExtra("posicao", position);
                 startActivity(intentPartipanteDetalhe);
             }
         });
@@ -131,13 +131,13 @@ public class MainActivity extends AppCompatActivity {
 
             Participante p = (Participante) bundleResultadoParticipante.getSerializable("participante");
 
-            Toast.makeText(getApplicationContext(), "Nome: " + p.getNome(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Participante " + p.getNome() + " cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
         } else if(requestCode == MainActivity.REQUEST_EVENTO && resultCode == Activity.RESULT_OK && data != null) {
             Bundle bundleResultadoEvento = data.getExtras();
 
             Evento e = (Evento) bundleResultadoEvento.getSerializable("evento");
 
-            Toast.makeText(getApplicationContext(), "Título: " + e.getTitulo(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Evento " + e.getTitulo() + " cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
         }
     }
 }

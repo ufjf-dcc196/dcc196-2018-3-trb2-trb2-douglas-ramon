@@ -11,6 +11,8 @@ import android.widget.EditText;
 
 public class ParticipanteDetalhesActivity extends AppCompatActivity {
 
+//    public static final int REQUEST_EDITAR = 1;
+
     private Button btnVoltar;
     private Button btnEditar;
     private Button btnInscrever;
@@ -38,7 +40,7 @@ public class ParticipanteDetalhesActivity extends AppCompatActivity {
         });
 
         Bundle bundleDetalhes = getIntent().getExtras();
-        int posicao = bundleDetalhes.getInt("idParticipante");
+        final int posicao = bundleDetalhes.getInt("posicao");
         Participante p = MainActivity.participantes.get(posicao);
         txtNome.setText(p.getNome());
         txtEmail.setText(p.getEmail());
@@ -48,5 +50,15 @@ public class ParticipanteDetalhesActivity extends AppCompatActivity {
         rclEventosInscritos.setLayoutManager(new LinearLayoutManager(this));
         final EventoAdapter eventoAdapter = new EventoAdapter(p.getEventos());
         rclEventosInscritos.setAdapter(eventoAdapter);
+
+        btnEditar = (Button) findViewById(R.id.btn_editar);
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentEditar = new Intent(ParticipanteDetalhesActivity.this, ParticipanteEditarActivity.class);
+                intentEditar.putExtra("posicao", posicao);
+                startActivity(intentEditar);
+            }
+        });
     }
 }
