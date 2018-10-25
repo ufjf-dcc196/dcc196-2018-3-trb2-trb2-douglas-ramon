@@ -20,12 +20,13 @@ public class EventoEditarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_evento_editar);
 
-        edtTitulo = (EditText) findViewById(R.id.edt_titulo_edt);
-        edtFacilitador = (EditText) findViewById(R.id.edt_facilitador_edt);
-        edtDescricao = (EditText) findViewById(R.id.edt_descricao_edt);
-        edtData = (EditText) findViewById(R.id.edt_data_edt);
-        edtHora = (EditText) findViewById(R.id.edt_hora_edt);
+        edtTitulo = (EditText) findViewById(R.id.edt_titulo_editar);
+        edtFacilitador = (EditText) findViewById(R.id.edt_facilitador_editar);
+        edtDescricao = (EditText) findViewById(R.id.edt_descricao_editar);
+        edtData = (EditText) findViewById(R.id.edt_data_editar);
+        edtHora = (EditText) findViewById(R.id.edt_hora_editar);
 
         Bundle bundleDetalhes = getIntent().getExtras();
         final int posicao = bundleDetalhes.getInt("posicao");
@@ -36,7 +37,7 @@ public class EventoEditarActivity extends AppCompatActivity {
         edtData.setText(e.getData());
         edtHora.setText(e.getHora());
 
-        btnVoltar = (Button) findViewById(R.id.btn_voltar_evento_editar);
+        btnVoltar = (Button) findViewById(R.id.btn_voltar_evento_editar_editar);
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,11 +47,11 @@ public class EventoEditarActivity extends AppCompatActivity {
             }
         });
 
-        btnSalvar = (Button) findViewById(R.id.btn_salvar_evento);
+        btnSalvar = (Button) findViewById(R.id.btn_salvar_evento_editar);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent resultadoEvento = new Intent(EventoEditarActivity.this, EventoDetalhesActivity.class);
+                Intent resultadoEventoEditar = new Intent(EventoEditarActivity.this, EventoDetalhesActivity.class);
 
                 String titulo = edtTitulo.getText().toString();
                 String facilitador = edtFacilitador.getText().toString();
@@ -60,12 +61,12 @@ public class EventoEditarActivity extends AppCompatActivity {
 
                 MainActivity.eventos.get(posicao).setTitulo(titulo);
                 MainActivity.eventos.get(posicao).setFacilitador(facilitador);
-                MainActivity.eventos.get(posicao).setDescricao(descricao);
-                MainActivity.eventos.get(posicao).setData(data);
-                MainActivity.eventos.get(posicao).setHora(hora);
+                MainActivity.eventos.get(posicao).setFacilitador(descricao);
+                MainActivity.eventos.get(posicao).setFacilitador(data);
+                MainActivity.eventos.get(posicao).setFacilitador(hora);
 
-                resultadoEvento.putExtra("posicao", posicao);
-                startActivity(resultadoEvento);
+                resultadoEventoEditar.putExtra("posicao", posicao);
+                startActivity(resultadoEventoEditar);
             }
         });
     }
