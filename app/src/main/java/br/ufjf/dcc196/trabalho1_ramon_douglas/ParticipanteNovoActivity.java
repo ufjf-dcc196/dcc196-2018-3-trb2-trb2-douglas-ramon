@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ParticipanteNovoActivity extends AppCompatActivity {
 
@@ -44,15 +45,22 @@ public class ParticipanteNovoActivity extends AppCompatActivity {
                 String email = edtEmail.getText().toString();
                 String cpf = edtCpf.getText().toString();
 
-                Participante p = new Participante(nome, email, cpf);
-                MainActivity.participantes.add(p);
+                if(nome.equals("") || email.equals("") || cpf.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Participante p = new Participante(nome, email, cpf);
+                    MainActivity.participantes.add(p);
 
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("participante", p);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("participante", p);
 
-                resultadoParticipante.putExtras(bundle);
-                setResult(Activity.RESULT_OK, resultadoParticipante);
-                finish();
+                    resultadoParticipante.putExtras(bundle);
+                    setResult(Activity.RESULT_OK, resultadoParticipante);
+
+                    Toast.makeText(getApplicationContext(), "Participante " + p.getNome() + " cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
     }

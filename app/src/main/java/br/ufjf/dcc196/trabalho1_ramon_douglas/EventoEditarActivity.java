@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class EventoEditarActivity extends AppCompatActivity {
 
@@ -52,6 +53,7 @@ public class EventoEditarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent resultadoEventoEditar = new Intent(EventoEditarActivity.this, EventoDetalhesActivity.class);
+                resultadoEventoEditar.putExtra("posicao", posicao);
 
                 String titulo = edtTitulo.getText().toString();
                 String facilitador = edtFacilitador.getText().toString();
@@ -59,14 +61,19 @@ public class EventoEditarActivity extends AppCompatActivity {
                 String data = edtData.getText().toString();
                 String hora = edtHora.getText().toString();
 
-                MainActivity.eventos.get(posicao).setTitulo(titulo);
-                MainActivity.eventos.get(posicao).setFacilitador(facilitador);
-                MainActivity.eventos.get(posicao).setFacilitador(descricao);
-                MainActivity.eventos.get(posicao).setFacilitador(data);
-                MainActivity.eventos.get(posicao).setFacilitador(hora);
+                if(titulo.equals("") || descricao.equals("") || facilitador.equals("") || data.equals("") || hora.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                    startActivity(resultadoEventoEditar);
+                } else {
+                    MainActivity.eventos.get(posicao).setTitulo(titulo);
+                    MainActivity.eventos.get(posicao).setFacilitador(facilitador);
+                    MainActivity.eventos.get(posicao).setFacilitador(descricao);
+                    MainActivity.eventos.get(posicao).setFacilitador(data);
+                    MainActivity.eventos.get(posicao).setFacilitador(hora);
 
-                resultadoEventoEditar.putExtra("posicao", posicao);
-                startActivity(resultadoEventoEditar);
+                    Toast.makeText(getApplicationContext(), "Evento atualizado com sucesso!", Toast.LENGTH_SHORT).show();
+                    startActivity(resultadoEventoEditar);
+                }
             }
         });
     }

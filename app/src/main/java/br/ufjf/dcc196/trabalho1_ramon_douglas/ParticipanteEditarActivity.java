@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ParticipanteEditarActivity extends AppCompatActivity {
 
@@ -47,17 +48,24 @@ public class ParticipanteEditarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent resultadoParticipante = new Intent(ParticipanteEditarActivity.this, ParticipanteDetalhesActivity.class);
+                resultadoParticipante.putExtra("posicao", posicao);
 
                 String nome = edtNome.getText().toString();
                 String email = edtEmail.getText().toString();
                 String cpf = edtCpf.getText().toString();
 
-                MainActivity.participantes.get(posicao).setCpf(cpf);
-                MainActivity.participantes.get(posicao).setEmail(email);
-                MainActivity.participantes.get(posicao).setNome(nome);
+                if(nome.equals("") || email.equals("") || cpf.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                    startActivity(resultadoParticipante);
+                } else {
 
-                resultadoParticipante.putExtra("posicao", posicao);
-                startActivity(resultadoParticipante);
+                    MainActivity.participantes.get(posicao).setCpf(cpf);
+                    MainActivity.participantes.get(posicao).setEmail(email);
+                    MainActivity.participantes.get(posicao).setNome(nome);
+
+                    Toast.makeText(getApplicationContext(), "Participante atualizado com sucesso!", Toast.LENGTH_SHORT).show();
+                    startActivity(resultadoParticipante);
+                }
             }
         });
     }

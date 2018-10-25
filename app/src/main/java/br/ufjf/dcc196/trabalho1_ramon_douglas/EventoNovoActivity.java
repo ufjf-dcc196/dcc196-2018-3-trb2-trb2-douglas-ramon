@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class EventoNovoActivity extends AppCompatActivity {
 
@@ -50,15 +51,21 @@ public class EventoNovoActivity extends AppCompatActivity {
                 String data = edtData.getText().toString();
                 String hora = edtHora.getText().toString();
 
-                Evento e = new Evento(titulo, facilitador, data, hora, descricao);
-                MainActivity.eventos.add(e);
+                if(titulo.equals("") || descricao.equals("") || facilitador.equals("") || data.equals("") || hora.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Evento e = new Evento(titulo, facilitador, data, hora, descricao);
+                    MainActivity.eventos.add(e);
 
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("evento", e);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("evento", e);
 
-                resultadoEvento.putExtras(bundle);
-                setResult(Activity.RESULT_OK, resultadoEvento);
-                finish();
+                    resultadoEvento.putExtras(bundle);
+                    setResult(Activity.RESULT_OK, resultadoEvento);
+                    Toast.makeText(getApplicationContext(), "Evento " + e.getTitulo() + " cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
     }

@@ -22,7 +22,8 @@
         <activity android:name=".ParticipanteEditarActivity" />
         <activity android:name=".EventoDetalhesActivity" />
         <activity android:name=".EventoEditarActivity" />
-        <activity android:name=".ParticipanteInscreverActivity"></activity>
+        <activity android:name=".ParticipanteInscreverActivity" />
+        <activity android:name=".EventoDetalhesIndividualActivity"></activity>
     </application>
 
 </manifest>

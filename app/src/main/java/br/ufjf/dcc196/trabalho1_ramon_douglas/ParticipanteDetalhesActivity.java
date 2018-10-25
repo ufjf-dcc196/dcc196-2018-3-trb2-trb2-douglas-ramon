@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ParticipanteDetalhesActivity extends AppCompatActivity {
 
@@ -41,7 +42,7 @@ public class ParticipanteDetalhesActivity extends AppCompatActivity {
 
         Bundle bundleDetalhes = getIntent().getExtras();
         final int posicao = bundleDetalhes.getInt("posicao");
-        Participante p = MainActivity.participantes.get(posicao);
+        final Participante p = MainActivity.participantes.get(posicao);
         txtNome.setText(p.getNome());
         txtEmail.setText(p.getEmail());
         txtCpf.setText(p.getCpf());
@@ -50,6 +51,16 @@ public class ParticipanteDetalhesActivity extends AppCompatActivity {
         rclEventosInscritos.setLayoutManager(new LinearLayoutManager(this));
         final EventoAdapter eventoAdapter = new EventoAdapter(p.getEventos());
         rclEventosInscritos.setAdapter(eventoAdapter);
+        eventoAdapter.setOnEventoLongClickListener(new EventoAdapter.OnEventoLongClickListener() {
+            @Override
+            public void onEventoLongClickListener(View view, int position) {
+                int idEvento = MainActivity.eventos.indexOf(p.getEventos().get(position));
+                MainActivity.eventos.get(idEvento).getParticipantes().remove(p);
+                MainActivity.participantes.get(posicao).getEventos().remove(position);
+                Toast.makeText(getApplicationContext(),"Evento removido com sucesso!", Toast.LENGTH_SHORT).show();
+                eventoAdapter.notifyItemRemoved(position);
+            }
+        });
 
         btnEditar = (Button) findViewById(R.id.btn_editar);
         btnEditar.setOnClickListener(new View.OnClickListener() {

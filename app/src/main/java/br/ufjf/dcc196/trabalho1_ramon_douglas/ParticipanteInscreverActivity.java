@@ -38,7 +38,11 @@ public class ParticipanteInscreverActivity extends AppCompatActivity {
         eventoAdapter.setOnEventoClickListener(new EventoAdapter.OnEventoClickListener() {
             @Override
             public void onEventoClick(View view, int position) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(ParticipanteInscreverActivity.this, EventoDetalhesIndividualActivity.class);
+                intent.putExtra("posicao", position);
+                int idParticipante = posicao;
+                intent.putExtra("idParticipante", idParticipante);
+                startActivity(intent);
             }
         });
     }
