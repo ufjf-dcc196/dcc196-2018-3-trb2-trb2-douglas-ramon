@@ -52,6 +52,7 @@ public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapte
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             longClickListener.onParticipanteLongClickListener(v, position);
+                            return true;
                         }
                     }
                     return false;

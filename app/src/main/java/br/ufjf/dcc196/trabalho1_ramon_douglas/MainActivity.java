@@ -48,6 +48,16 @@ public class MainActivity extends AppCompatActivity {
         add(e2);
         add(e3);
 
+        e0.getParticipantes().add(participantes.get(0));
+        e1.getParticipantes().add(participantes.get(0));
+        e1.getParticipantes().add(participantes.get(3));
+        e2.getParticipantes().add(participantes.get(1));
+        e2.getParticipantes().add(participantes.get(2));
+        e2.getParticipantes().add(participantes.get(3));
+        e3.getParticipantes().add(participantes.get(0));
+        e3.getParticipantes().add(participantes.get(3));
+        e3.getParticipantes().add(participantes.get(4));
+
         participantes.get(0).getEventos().add(e0);
         participantes.get(0).getEventos().add(e3);
         participantes.get(0).getEventos().add(e1);
@@ -98,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
         participanteAdapter.setOnParticipanteLongClickListener(new ParticipanteAdapter.OnParticipanteLongClickListener() {
             @Override
             public void onParticipanteLongClickListener(View view, int position) {
-//                participantes.remove(position);
-//                participanteAdapter.notifyItemChanged(position);
+                participantes.remove(position);
+                participanteAdapter.notifyItemRemoved(position);
             }
         });
 
@@ -118,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
         eventoAdapter.setOnEventoLongClickListener(new EventoAdapter.OnEventoLongClickListener() {
             @Override
             public void onEventoLongClickListener(View view, int position) {
-//                eventos.remove(position);
-//                eventoAdapter.notifyItemChanged(position);
+                eventos.remove(position);
+                eventoAdapter.notifyItemRemoved(position);
             }
         });
     }

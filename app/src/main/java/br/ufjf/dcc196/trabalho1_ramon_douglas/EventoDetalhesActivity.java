@@ -3,6 +3,7 @@ package br.ufjf.dcc196.trabalho1_ramon_douglas;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +31,7 @@ public class EventoDetalhesActivity extends AppCompatActivity {
         txtData = (EditText) findViewById(R.id.txt_data);
         txtHora = (EditText) findViewById(R.id.txt_hora);
 
-        btnVoltar = (Button) findViewById(R.id.btn_voltar_participante_editar);
+        btnVoltar = (Button) findViewById(R.id.btn_voltar_evento_editar);
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,11 +42,26 @@ public class EventoDetalhesActivity extends AppCompatActivity {
 
         Bundle bundleDetalhes = getIntent().getExtras();
         final int posicao = bundleDetalhes.getInt("posicao");
-        Evento p = MainActivity.eventos.get(posicao);
-        txtTitulo.setText(p.getTitulo());
-        txtFacilitador.setText(p.getFacilitador());
-        txtDescricao.setText(p.getDescricao());
-        txtData.setText(p.getData());
-        txtHora.setText(p.getHora());
+        Evento e = MainActivity.eventos.get(posicao);
+        txtTitulo.setText(e.getTitulo());
+        txtFacilitador.setText(e.getFacilitador());
+        txtDescricao.setText(e.getDescricao());
+        txtData.setText(e.getData());
+        txtHora.setText(e.getHora());
+
+        rclParticipantesInscritos = (RecyclerView) findViewById(R.id.rcl_participantes_inscritos);
+        rclParticipantesInscritos.setLayoutManager(new LinearLayoutManager(this));
+        final ParticipanteAdapter participanteAdapter = new ParticipanteAdapter(e.getParticipantes());
+        rclParticipantesInscritos.setAdapter(participanteAdapter);
+
+        btnEditar = (Button) findViewById(R.id.btn_editar);
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentEditar = new Intent(EventoDetalhesActivity.this, EventoEditarActivity.class);
+                intentEditar.putExtra("posicao", posicao);
+                startActivity(intentEditar);
+            }
+        });
     }
 }

@@ -20,7 +20,8 @@
         <activity android:name=".EventoNovoActivity" />
         <activity android:name=".ParticipanteDetalhesActivity" />
         <activity android:name=".ParticipanteEditarActivity" />
-        <activity android:name=".EventoDetalhesActivity"></activity>
+        <activity android:name=".EventoDetalhesActivity" />
+        <activity android:name=".EventoEditarActivity"></activity>
     </application>
 
 </manifest>

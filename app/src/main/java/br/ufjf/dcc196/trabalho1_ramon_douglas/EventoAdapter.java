@@ -52,6 +52,7 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             longClickListener.onEventoLongClickListener(v, position);
+                            return true;
                         }
                     }
                     return false;
