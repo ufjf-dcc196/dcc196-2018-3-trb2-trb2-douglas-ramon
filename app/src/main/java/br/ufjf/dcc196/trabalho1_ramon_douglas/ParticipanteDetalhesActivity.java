@@ -60,5 +60,15 @@ public class ParticipanteDetalhesActivity extends AppCompatActivity {
                 startActivity(intentEditar);
             }
         });
+
+        btnInscrever = (Button) findViewById(R.id.btn_inscrever);
+        btnInscrever.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ParticipanteDetalhesActivity.this, ParticipanteInscreverActivity.class);
+                intent.putExtra("posicao", posicao);
+                startActivity(intent);
+            }
+        });
     }
 }
