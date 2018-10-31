@@ -141,12 +141,18 @@ public class MainActivity extends AppCompatActivity {
             Bundle bundleResultadoParticipante = data.getExtras();
 
             Participante p = (Participante) bundleResultadoParticipante.getSerializable("participante");
+            participantes.add(p);
 
+            Toast.makeText(getApplicationContext(), "Participante " + p.getNome() + " cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
         } else if(requestCode == MainActivity.REQUEST_EVENTO && resultCode == Activity.RESULT_OK && data != null) {
+
             Bundle bundleResultadoEvento = data.getExtras();
 
             Evento e = (Evento) bundleResultadoEvento.getSerializable("evento");
 
+            eventos.add(e);
+            rclEventos.getAdapter().notifyItemInserted(eventos.size()-1);
+            Toast.makeText(getApplicationContext(), "Evento " + e.getTitulo() + " cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
         }
     }
 }

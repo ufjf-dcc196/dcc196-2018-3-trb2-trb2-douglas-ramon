@@ -56,14 +56,13 @@ public class EventoNovoActivity extends AppCompatActivity {
                     finish();
                 } else {
                     Evento e = new Evento(titulo, facilitador, data, hora, descricao);
-                    MainActivity.eventos.add(e);
 
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("evento", e);
 
                     resultadoEvento.putExtras(bundle);
                     setResult(Activity.RESULT_OK, resultadoEvento);
-                    Toast.makeText(getApplicationContext(), "Evento " + e.getTitulo() + " cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+
                     finish();
                 }
             }

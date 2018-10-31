@@ -50,7 +50,6 @@ public class ParticipanteNovoActivity extends AppCompatActivity {
                     finish();
                 } else {
                     Participante p = new Participante(nome, email, cpf);
-                    MainActivity.participantes.add(p);
 
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("participante", p);
@@ -58,7 +57,6 @@ public class ParticipanteNovoActivity extends AppCompatActivity {
                     resultadoParticipante.putExtras(bundle);
                     setResult(Activity.RESULT_OK, resultadoParticipante);
 
-                    Toast.makeText(getApplicationContext(), "Participante " + p.getNome() + " cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }

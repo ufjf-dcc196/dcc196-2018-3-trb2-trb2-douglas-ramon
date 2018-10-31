@@ -64,7 +64,7 @@ public class EventoDetalhesIndividualActivity extends AppCompatActivity {
                 } else {
                     MainActivity.eventos.get(posicao).getParticipantes().add(p);
                     MainActivity.participantes.get(idParticipante).getEventos().add(e);
-                    Toast.makeText(getApplicationContext(), "Inscrito com sucesso!" + p.getNome(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Inscrito com sucesso!", Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }
             }
