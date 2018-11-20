@@ -58,6 +58,7 @@ public class EventoNovoActivity extends AppCompatActivity {
                 Intent intent = new Intent(EventoNovoActivity.this, MainActivity.class);
                 startActivity(intent);
 
+
                 /* Código sem banco */
                 /*
                 Intent resultadoEvento = new Intent();
@@ -81,6 +82,8 @@ public class EventoNovoActivity extends AppCompatActivity {
 
                     finish();
                 }*/
+
+
             }
         });
     }
