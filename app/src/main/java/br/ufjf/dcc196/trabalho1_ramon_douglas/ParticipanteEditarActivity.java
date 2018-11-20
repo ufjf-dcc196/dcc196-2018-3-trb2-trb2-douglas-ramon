@@ -1,7 +1,9 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +18,7 @@ public class ParticipanteEditarActivity extends AppCompatActivity {
     private EditText edtNome;
     private EditText edtCpf;
     private EditText edtEmail;
+    private DbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,18 @@ public class ParticipanteEditarActivity extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                ContentValues valores = new ContentValues();
+                valores.put(ParticipanteContract.Participante.COLUMN_NAME_NOME, edtNome.getText().toString());
+                valores.put(ParticipanteContract.Participante.COLUMN_NAME_EMAIL, edtEmail.getText().toString());
+                valores.put(ParticipanteContract.Participante.COLUMN_NAME_CPF, edtCpf.getText().toString());
+                long id = db.insert(ParticipanteContract.Participante.COLUMN_NAME_ID, null, valores);
+                Intent intent = new Intent(ParticipanteEditarActivity.this, MainActivity.class);
+                startActivity(intent);
+
+
+                /* Código sem banco */
+                /*
                 Intent resultadoParticipante = new Intent(ParticipanteEditarActivity.this, ParticipanteDetalhesActivity.class);
                 resultadoParticipante.putExtra("posicao", posicao);
 
@@ -66,6 +81,8 @@ public class ParticipanteEditarActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Participante atualizado com sucesso!", Toast.LENGTH_SHORT).show();
                     startActivity(resultadoParticipante);
                 }
+                */
+
             }
         });
     }
