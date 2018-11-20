@@ -1,6 +1,8 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,7 @@ public class EventoEditarActivity extends AppCompatActivity {
     private EditText edtDescricao;
     private EditText edtData;
     private EditText edtHora;
+    private DbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,21 @@ public class EventoEditarActivity extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                ContentValues valores = new ContentValues();
+                valores.put(EventoContract.Evento.COLUMN_NAME_TITULO, edtTitulo.getText().toString());
+                valores.put(EventoContract.Evento.COLUMN_NAME_DATA, edtData.getText().toString());
+                valores.put(EventoContract.Evento.COLUMN_NAME_HORA, edtHora.getText().toString());
+                valores.put(EventoContract.Evento.COLUMN_NAME_FACILITADOR, edtFacilitador.getText().toString());
+                valores.put(EventoContract.Evento.COLUMN_NAME_DESCRICAO, edtDescricao.getText().toString());
+                long id = db.insert(EventoContract.Evento.COLUMN_NAME_ID, null, valores);
+                Intent intent = new Intent(EventoEditarActivity.this, MainActivity.class);
+                startActivity(intent);
+
+
+                /* Código sem banco */
+                /*
                 Intent resultadoEventoEditar = new Intent(EventoEditarActivity.this, EventoDetalhesActivity.class);
                 resultadoEventoEditar.putExtra("posicao", posicao);
 
@@ -74,6 +92,8 @@ public class EventoEditarActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Evento atualizado com sucesso!", Toast.LENGTH_SHORT).show();
                     startActivity(resultadoEventoEditar);
                 }
+                */
+
             }
         });
     }
