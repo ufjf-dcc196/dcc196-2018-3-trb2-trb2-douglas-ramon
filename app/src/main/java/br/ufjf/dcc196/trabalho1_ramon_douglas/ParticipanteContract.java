@@ -6,6 +6,7 @@ public class ParticipanteContract {
 
     public static final class Participante implements BaseColumns {
         public static final String TABLE_NAME = "participante";
+        public static final String COLUMN_NAME_ID= "_ID";
         public static final String COLUMN_NAME_TITULO = "nome";
         public static final String COLUMN_NAME_FACILITADOR = "email";
         public static final String COLUMN_NAME_DATA = "cpf";

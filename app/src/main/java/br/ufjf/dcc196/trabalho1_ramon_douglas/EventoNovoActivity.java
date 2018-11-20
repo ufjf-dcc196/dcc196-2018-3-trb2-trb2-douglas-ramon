@@ -1,7 +1,9 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +20,7 @@ public class EventoNovoActivity extends AppCompatActivity {
     private EditText edtHora;
     private EditText edtFacilitador;
     private EditText edtDescricao;
+    private DbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,21 @@ public class EventoNovoActivity extends AppCompatActivity {
         btnCadastrarEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent resultadoEvento = new Intent();
 
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                ContentValues valores = new ContentValues();
+                valores.put(EventoContract.Evento.COLUMN_NAME_TITULO, edtTitulo.getText().toString());
+                valores.put(EventoContract.Evento.COLUMN_NAME_DATA, edtData.getText().toString());
+                valores.put(EventoContract.Evento.COLUMN_NAME_HORA, edtHora.getText().toString());
+                valores.put(EventoContract.Evento.COLUMN_NAME_FACILITADOR, edtFacilitador.getText().toString());
+                valores.put(EventoContract.Evento.COLUMN_NAME_DESCRICAO, edtDescricao.getText().toString());
+                long id = db.insert(EventoContract.Evento.COLUMN_NAME_ID, null, valores);
+                Intent intent = new Intent(EventoNovoActivity.this, MainActivity.class);
+                startActivity(intent);
+
+                /* Código sem banco */
+                /*
+                Intent resultadoEvento = new Intent();
                 String titulo = edtTitulo.getText().toString();
                 String descricao = edtDescricao.getText().toString();
                 String facilitador = edtFacilitador.getText().toString();
@@ -64,7 +80,7 @@ public class EventoNovoActivity extends AppCompatActivity {
                     setResult(Activity.RESULT_OK, resultadoEvento);
 
                     finish();
-                }
+                }*/
             }
         });
     }

@@ -6,6 +6,7 @@ public class EventoContract {
 
     public static final class Evento implements BaseColumns {
         public static final String TABLE_NAME = "evento";
+        public static final String COLUMN_NAME_ID= "_ID";
         public static final String COLUMN_NAME_TITULO = "titulo";
         public static final String COLUMN_NAME_FACILITADOR = "facilitador";
         public static final String COLUMN_NAME_DATA = "data";
