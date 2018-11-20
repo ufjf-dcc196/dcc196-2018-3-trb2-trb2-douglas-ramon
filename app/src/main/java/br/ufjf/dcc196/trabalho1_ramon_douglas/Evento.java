@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Evento implements Serializable {
+    private int id;
     private String titulo;
     private String facilitador;
     private String data;
@@ -16,6 +17,25 @@ public class Evento implements Serializable {
     private List<Participante> participantes;
 
     public Evento() {
+    }
+
+    public Evento(int id, String titulo, String facilitador, String data, String hora, String descricao) {
+        this.id = id;
+        this.titulo = titulo;
+        this.facilitador = facilitador;
+        this.data = data;
+        this.hora = hora;
+        this.descricao = descricao;
+    }
+
+    public Evento(int id, String titulo, String facilitador, String data, String hora, String descricao, List<Participante> participantes) {
+        this.id = id;
+        this.titulo = titulo;
+        this.facilitador = facilitador;
+        this.data = data;
+        this.hora = hora;
+        this.descricao = descricao;
+        this.participantes = participantes;
     }
 
     public Evento(String titulo, String facilitador, String data, String hora, String descricao) {
@@ -82,5 +102,13 @@ public class Evento implements Serializable {
 
     public void setParticipantes(List<Participante> participantes) {
         this.participantes = participantes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
