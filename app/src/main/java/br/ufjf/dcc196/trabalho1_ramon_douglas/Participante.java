@@ -5,12 +5,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Participante implements Serializable {
+    private int id;
     private String nome;
     private String email;
     private String cpf;
     private List<Evento> eventos;
 
     public Participante() {
+    }
+
+    public Participante(int id, String nome, String email, String cpf) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+    }
+
+    public Participante(int id, String nome, String email, String cpf, List<Evento> eventos) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.eventos = eventos;
     }
 
     public Participante(String nome, String email, String cpf) {
@@ -58,4 +74,8 @@ public class Participante implements Serializable {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 }
