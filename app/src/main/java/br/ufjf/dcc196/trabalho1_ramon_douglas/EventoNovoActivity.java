@@ -47,6 +47,7 @@ public class EventoNovoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 ContentValues valores = new ContentValues();
                 valores.put(EventoContract.Evento.COLUMN_NAME_TITULO, edtTitulo.getText().toString());
