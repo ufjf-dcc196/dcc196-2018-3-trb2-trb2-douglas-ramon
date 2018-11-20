@@ -22,5 +22,5 @@ public class EventoContract {
             + Evento.COLUMN_NAME_DESCRICAO + " TEXT"
             + ")";
 
-    public final static String DROP_EVENTO= "DROP TABLE IF EXISTS " + Evento.TABLE_NAME;
+    public final static String DROP_EVENTO = "DROP TABLE IF EXISTS " + Evento.TABLE_NAME;
 }
