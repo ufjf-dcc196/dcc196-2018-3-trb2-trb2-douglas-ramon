@@ -2,7 +2,6 @@ package br.ufjf.dcc196.trabalho1_ramon_douglas;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 
@@ -15,7 +14,10 @@ public class ParticipanteDAO {
     private String nome = ParticipanteContract.Participante.COLUMN_NAME_NOME;
     private String email = ParticipanteContract.Participante.COLUMN_NAME_EMAIL;
     private String cpf = ParticipanteContract.Participante.COLUMN_NAME_CPF;
+    private String id = ParticipanteContract.Participante.COLUMN_NAME_ID;
+    ContentValues valores = new ContentValues();
     String[] campos = {nome, email, cpf};
+    Cursor cursor;
 
 
     public ParticipanteDAO(Context context) {
@@ -23,7 +25,6 @@ public class ParticipanteDAO {
     }
 
     public String insereDado(String _nome, String _email, String _cpf) {
-        ContentValues valores = new ContentValues();
         long resultado;
         db = banco.getWritableDatabase();
 
@@ -42,7 +43,6 @@ public class ParticipanteDAO {
     }
 
     public Cursor carregaDados() {
-        Cursor cursor;
         db = banco.getReadableDatabase();
         cursor = db.query(tabela, campos, null, null, null, null, null, null);
 
@@ -53,9 +53,8 @@ public class ParticipanteDAO {
         return cursor;
     }
 
-    public Cursor carregaDadoById(int id) {
-        Cursor cursor;
-        String where = ParticipanteContract.Participante.COLUMN_NAME_ID + "=" + id;
+    public Cursor carregaDadoById(int _id) {
+        String where = id + "=" + _id;
         db = banco.getReadableDatabase();
         cursor = db.query(tabela, campos, where, null, null, null, null, null);
 
@@ -66,6 +65,18 @@ public class ParticipanteDAO {
         return cursor;
     }
 
+    public void alteraRegistro(int _id, String _nome, String _email, String _cpf) {
+        String where;
+        db = banco.getWritableDatabase();
+        where = id + "=" + _id;
+
+        valores.put(nome, _nome);
+        valores.put(email, _email);
+        valores.put(cpf, _cpf);
+
+        db.update(tabela, valores, where, null);
+        db.close();
+    }
 }
 
 
