@@ -24,14 +24,17 @@ public class ParticipanteDAO {
         banco = new DbHelper(context);
     }
 
+    public void valores_put(ContentValues v, String _nome, String _email, String _cpf) {
+        v.put(nome, _nome);
+        v.put(email, _email);
+        v.put(cpf, _cpf);
+    }
+
     public String insereDado(String _nome, String _email, String _cpf) {
         long resultado;
         db = banco.getWritableDatabase();
 
-        valores.put(nome, _nome);
-        valores.put(email, _email);
-        valores.put(cpf, _cpf);
-
+        valores_put(valores, _nome, _email, _cpf);
         resultado = db.insert(tabela, null, valores);
         db.close();
 
@@ -70,10 +73,7 @@ public class ParticipanteDAO {
         db = banco.getWritableDatabase();
         where = id + "=" + _id;
 
-        valores.put(nome, _nome);
-        valores.put(email, _email);
-        valores.put(cpf, _cpf);
-
+        valores_put(valores, _nome, _email, _cpf);
         db.update(tabela, valores, where, null);
         db.close();
     }
