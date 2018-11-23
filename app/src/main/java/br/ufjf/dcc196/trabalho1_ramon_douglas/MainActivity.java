@@ -39,16 +39,16 @@ public class MainActivity extends AppCompatActivity {
     }};
 
     public static List<Evento> eventos = new ArrayList<Evento>() {{
-//        Evento e0 = new Evento("Curso Android", "Igor Knop", "20/10/2018", "20:00", "Curso de introdução ao desenvolvimento android.");
+        Evento e0 = new Evento("Curso Android", "Igor Knop", "20/10/2018", "20:00", "Curso de introdução ao desenvolvimento android.");
 //        Evento e1 = new Evento("Palestra Igor", "Igor Knop", "21/10/2018", "17:00", "Palestra sobre clean code.");
 //        Evento e2 = new Evento("Curso Java", "Jairo Souza", "22/10/2018", "19:00", "Curso avançado de Java.");
 //        Evento e3 = new Evento("Mesa redonda", "Luciana Campos", "21/10/2018", "21:00", "Mesa redonda para debater as novas tendências do mercado.");
-//        add(e0);
+        add(e0);
 //        add(e1);
 //        add(e2);
 //        add(e3);
 //
-//        e0.getParticipantes().add(participantes.get(0));
+        e0.getParticipantes().add(participantes.get(0));
 //        e1.getParticipantes().add(participantes.get(0));
 //        e1.getParticipantes().add(participantes.get(3));
 //        e2.getParticipantes().add(participantes.get(1));
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 //        e3.getParticipantes().add(participantes.get(3));
 //        e3.getParticipantes().add(participantes.get(4));
 //
-//        participantes.get(0).getEventos().add(e0);
+        participantes.get(0).getEventos().add(e0);
 //        participantes.get(0).getEventos().add(e3);
 //        participantes.get(0).getEventos().add(e1);
 //        participantes.get(1).getEventos().add(e2);

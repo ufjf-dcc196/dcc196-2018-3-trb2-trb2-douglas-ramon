@@ -73,7 +73,7 @@ public class EventoDAO {
         return cursor;
     }
 
-    public void alteraRegistro(String _id, String _titulo, String _descricao, String _facilitador, String _data, String _hora) {
+    public void alteraRegistro(int _id, String _titulo, String _descricao, String _facilitador, String _data, String _hora) {
         String where = id + "=" + _id;
         db = banco.getWritableDatabase();
         valores_put(valores, _titulo, _descricao, _facilitador, _data, _hora);

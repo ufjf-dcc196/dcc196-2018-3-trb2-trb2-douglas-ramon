@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class EventoEditarActivity extends AppCompatActivity {
 
@@ -55,17 +56,18 @@ public class EventoEditarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                ContentValues valores = new ContentValues();
-                valores.put(EventoContract.Evento.COLUMN_NAME_TITULO, edtTitulo.getText().toString());
-                valores.put(EventoContract.Evento.COLUMN_NAME_DATA, edtData.getText().toString());
-                valores.put(EventoContract.Evento.COLUMN_NAME_HORA, edtHora.getText().toString());
-                valores.put(EventoContract.Evento.COLUMN_NAME_FACILITADOR, edtFacilitador.getText().toString());
-                valores.put(EventoContract.Evento.COLUMN_NAME_DESCRICAO, edtDescricao.getText().toString());
-                long id = db.insert(EventoContract.Evento.COLUMN_NAME_ID, null, valores);
-                Intent intent = new Intent(EventoEditarActivity.this, MainActivity.class);
-                startActivity(intent);
+                Bundle bundleDetalhes = getIntent().getExtras();
+                final int posicao = bundleDetalhes.getInt("posicao");
+                EventoDAO crud = new EventoDAO(getBaseContext());
 
+                String titulo = edtTitulo.getText().toString();
+                String descricao = edtDescricao.getText().toString();
+                String facilitador = edtFacilitador.getText().toString();
+                String data = edtData.getText().toString();
+                String hora = edtHora.getText().toString();
+
+                crud.alteraRegistro(posicao, titulo, descricao, facilitador, data, hora);
+                Toast.makeText(getApplicationContext(), "Participante Alterado com Sucesso!", Toast.LENGTH_LONG).show();
 
                 /* Código sem banco */
                 /*
