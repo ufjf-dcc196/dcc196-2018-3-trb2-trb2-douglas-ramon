@@ -64,6 +64,15 @@ public class ParticipanteEditarActivity extends AppCompatActivity {
                 crud.alteraRegistro(posicao, nome, email, cpf);
                 Toast.makeText(getApplicationContext(), "Participante Alterado com Sucesso!", Toast.LENGTH_LONG).show();
 
+                MainActivity.participantes.get(posicao).setCpf(cpf);
+                MainActivity.participantes.get(posicao).setEmail(email);
+                MainActivity.participantes.get(posicao).setNome(nome);
+
+                Intent resultadoParticipante = new Intent(ParticipanteEditarActivity.this, ParticipanteDetalhesActivity.class);
+                resultadoParticipante.putExtra("posicao", posicao);
+                startActivity(resultadoParticipante);
+
+
                 /* Código com banco, teste inicial */
                 /*
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
