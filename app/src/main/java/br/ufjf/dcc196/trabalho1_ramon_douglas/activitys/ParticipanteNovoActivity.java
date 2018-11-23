@@ -53,8 +53,8 @@ public class ParticipanteNovoActivity extends AppCompatActivity {
                 String cpf = edtCpf.getText().toString();
 
                 crud.insereDado(nome, email, cpf);
-                Intent resultadoParticipante = new Intent();
 
+                Intent resultadoParticipante = new Intent();
                 if(nome.equals("") || email.equals("") || cpf.equals("")) {
                     Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
                     finish();

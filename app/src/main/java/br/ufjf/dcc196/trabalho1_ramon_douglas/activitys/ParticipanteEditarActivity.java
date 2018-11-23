@@ -73,41 +73,6 @@ public class ParticipanteEditarActivity extends AppCompatActivity {
                 startActivity(resultadoParticipante);
 
 
-                /* Código com banco, teste inicial */
-                /*
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                ContentValues valores = new ContentValues();
-                valores.put(ParticipanteContract.Participante.COLUMN_NAME_NOME, edtNome.getText().toString());
-                valores.put(ParticipanteContract.Participante.COLUMN_NAME_EMAIL, edtEmail.getText().toString());
-                valores.put(ParticipanteContract.Participante.COLUMN_NAME_CPF, edtCpf.getText().toString());
-                long id = db.insert(ParticipanteContract.Participante.COLUMN_NAME_ID, null, valores);
-                Intent intent = new Intent(ParticipanteEditarActivity.this, MainActivity.class);
-                startActivity(intent);
-                */
-
-                /* Código sem banco */
-                /*
-                Intent resultadoParticipante = new Intent(ParticipanteEditarActivity.this, ParticipanteDetalhesActivity.class);
-                resultadoParticipante.putExtra("posicao", posicao);
-
-                String nome = edtNome.getText().toString();
-                String email = edtEmail.getText().toString();
-                String cpf = edtCpf.getText().toString();
-
-                if(nome.equals("") || email.equals("") || cpf.equals("")) {
-                    Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
-                    startActivity(resultadoParticipante);
-                } else {
-
-                    MainActivity.participantes.get(posicao).setCpf(cpf);
-                    MainActivity.participantes.get(posicao).setEmail(email);
-                    MainActivity.participantes.get(posicao).setNome(nome);
-
-                    Toast.makeText(getApplicationContext(), "Participante atualizado com sucesso!", Toast.LENGTH_SHORT).show();
-                    startActivity(resultadoParticipante);
-                }
-                */
-
             }
         });
     }

@@ -59,10 +59,10 @@ public class EventoNovoActivity extends AppCompatActivity {
                 String data = edtData.getText().toString();
                 String hora = edtHora.getText().toString();
 
-               crud.insereDado(titulo, descricao, facilitador, data, hora);
+                crud.insereDado(titulo, descricao, facilitador, data, hora);
                 Intent resultadoEvento = new Intent();
 
-                if(titulo.equals("") || descricao.equals("") || facilitador.equals("") || data.equals("") || hora.equals("")) {
+                if (titulo.equals("") || descricao.equals("") || facilitador.equals("") || data.equals("") || hora.equals("")) {
                     Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
