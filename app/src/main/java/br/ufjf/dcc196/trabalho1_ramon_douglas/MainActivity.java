@@ -27,15 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
     public static List<Participante> participantes = new ArrayList<Participante>() {{
         Participante p0 = new Participante("Ramon Larivoir", "rlarivoir@gmail.com", "11111111111");
-        Participante p1 = new Participante("Douglas Baumgratz", "douglas@gmail.com", "22222222222");
-        Participante p2 = new Participante("Igor Knop", "igor@gmail.com", "3333333333");
-        Participante p3 = new Participante("João da Silva", "joao@gmail.com", "44444444444");
-        Participante p4 = new Participante("José de Souza", "jose@gmail.com", "55555555555");
+//        Participante p1 = new Participante("Douglas Baumgratz", "douglas@gmail.com", "22222222222");
+//        Participante p2 = new Participante("Igor Knop", "igor@gmail.com", "3333333333");
+//        Participante p3 = new Participante("João da Silva", "joao@gmail.com", "44444444444");
+//        Participante p4 = new Participante("José de Souza", "jose@gmail.com", "55555555555");
         add(p0);
-        add(p1);
-        add(p2);
-        add(p3);
-        add(p4);
+//        add(p1);
+//        add(p2);
+//        add(p3);
+//        add(p4);
     }};
 
     public static List<Evento> eventos = new ArrayList<Evento>() {{

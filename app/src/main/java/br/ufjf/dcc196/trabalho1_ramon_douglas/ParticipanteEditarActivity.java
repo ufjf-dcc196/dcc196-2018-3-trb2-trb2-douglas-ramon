@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ParticipanteEditarActivity extends AppCompatActivity {
 
@@ -48,6 +49,20 @@ public class ParticipanteEditarActivity extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Bundle bundleDetalhes = getIntent().getExtras();
+                final int posicao = bundleDetalhes.getInt("posicao");
+                ParticipanteDAO crud = new ParticipanteDAO(getBaseContext());
+
+                String nome = edtNome.getText().toString();
+                String email = edtEmail.getText().toString();
+                String cpf = edtCpf.getText().toString();
+
+                crud.alteraRegistro(posicao, nome, email, cpf);
+                Toast.makeText(getApplicationContext(), "Participante Alterado com Sucesso!", Toast.LENGTH_LONG).show();
+
+                /* Código com banco, teste inicial */
+                /*
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 ContentValues valores = new ContentValues();
                 valores.put(ParticipanteContract.Participante.COLUMN_NAME_NOME, edtNome.getText().toString());
@@ -56,7 +71,7 @@ public class ParticipanteEditarActivity extends AppCompatActivity {
                 long id = db.insert(ParticipanteContract.Participante.COLUMN_NAME_ID, null, valores);
                 Intent intent = new Intent(ParticipanteEditarActivity.this, MainActivity.class);
                 startActivity(intent);
-
+                */
 
                 /* Código sem banco */
                 /*

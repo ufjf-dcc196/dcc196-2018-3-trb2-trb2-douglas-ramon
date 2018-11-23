@@ -46,7 +46,6 @@ public class ParticipanteNovoActivity extends AppCompatActivity {
                 String email = edtEmail.getText().toString();
                 String cpf = edtCpf.getText().toString();
 
-
                 String resultado;
                 resultado = crud.insereDado(nome, email, cpf);
 
