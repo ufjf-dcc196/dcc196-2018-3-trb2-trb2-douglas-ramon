@@ -1,4 +1,4 @@
-package br.ufjf.dcc196.trabalho1_ramon_douglas;
+package br.ufjf.dcc196.trabalho1_ramon_douglas.contratos;
 
 import android.provider.BaseColumns;
 

@@ -1,4 +1,4 @@
-package br.ufjf.dcc196.trabalho1_ramon_douglas;
+package br.ufjf.dcc196.trabalho1_ramon_douglas.activitys;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+
+import br.ufjf.dcc196.trabalho1_ramon_douglas.adapter.EventoAdapter;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.R;
 
 public class ParticipanteInscreverActivity extends AppCompatActivity {
 

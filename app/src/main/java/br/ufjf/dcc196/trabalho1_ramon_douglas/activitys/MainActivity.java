@@ -1,4 +1,4 @@
-package br.ufjf.dcc196.trabalho1_ramon_douglas;
+package br.ufjf.dcc196.trabalho1_ramon_douglas.activitys;
 import android.database.Cursor;
 
 import android.app.Activity;
@@ -14,6 +14,14 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.ufjf.dcc196.trabalho1_ramon_douglas.modelo.Evento;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.adapter.EventoAdapter;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.modelo.Participante;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.adapter.ParticipanteAdapter;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.R;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.contratos.ParticipanteContract;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.ParticipanteDAO;
 
 public class MainActivity extends AppCompatActivity {
 

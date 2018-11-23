@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".ParticipanteNovoActivity">
+    tools:context=".activitys.ParticipanteNovoActivity">
 
     <EditText
         android:id="@+id/edt_nome_completo"

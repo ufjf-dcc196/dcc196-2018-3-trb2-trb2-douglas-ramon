@@ -1,4 +1,4 @@
-package br.ufjf.dcc196.trabalho1_ramon_douglas;
+package br.ufjf.dcc196.trabalho1_ramon_douglas.modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,11 +1,8 @@
-package br.ufjf.dcc196.trabalho1_ramon_douglas;
+package br.ufjf.dcc196.trabalho1_ramon_douglas.modelo;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class Evento implements Serializable {
     private int id;

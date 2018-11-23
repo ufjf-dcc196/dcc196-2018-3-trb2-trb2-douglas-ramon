@@ -1,9 +1,11 @@
-package br.ufjf.dcc196.trabalho1_ramon_douglas;
+package br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
+
+import br.ufjf.dcc196.trabalho1_ramon_douglas.contratos.ParticipanteContract;
 
 public class ParticipanteDAO {
 
@@ -24,7 +26,7 @@ public class ParticipanteDAO {
         banco = new DbHelper(context);
     }
 
-    public void valores_put(ContentValues v, String _nome, String _email, String _cpf) {
+    public void putHelper(ContentValues v, String _nome, String _email, String _cpf) {
         v.put(nome, _nome);
         v.put(email, _email);
         v.put(cpf, _cpf);
@@ -34,7 +36,7 @@ public class ParticipanteDAO {
         long resultado;
         db = banco.getWritableDatabase();
 
-        valores_put(valores, _nome, _email, _cpf);
+        putHelper(valores, _nome, _email, _cpf);
         resultado = db.insert(tabela, null, valores);
         db.close();
 
@@ -73,7 +75,7 @@ public class ParticipanteDAO {
         db = banco.getWritableDatabase();
         where = id + "=" + _id;
 
-        valores_put(valores, _nome, _email, _cpf);
+        putHelper(valores, _nome, _email, _cpf);
         db.update(tabela, valores, where, null);
         db.close();
     }

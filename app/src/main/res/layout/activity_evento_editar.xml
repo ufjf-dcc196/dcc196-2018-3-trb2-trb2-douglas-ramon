@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".EventoEditarActivity">
+    tools:context=".activitys.EventoEditarActivity">
 
     <EditText
         android:id="@+id/edt_titulo_editar"

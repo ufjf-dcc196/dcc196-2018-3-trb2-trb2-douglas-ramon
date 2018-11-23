@@ -1,8 +1,11 @@
-package br.ufjf.dcc196.trabalho1_ramon_douglas;
+package br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import br.ufjf.dcc196.trabalho1_ramon_douglas.contratos.EventoContract;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.contratos.ParticipanteContract;
 
 public class DbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;

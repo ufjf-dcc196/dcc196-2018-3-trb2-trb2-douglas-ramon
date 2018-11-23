@@ -12,7 +12,7 @@
         android:scrollbarStyle="insideInset"
         android:scrollbars="vertical"
         android:theme="@style/EditTextSemLinhaTheme"
-        tools:context=".EventoDetalhesActivity"
+        tools:context=".activitys.EventoDetalhesActivity"
         tools:scrollbarStyle="insideOverlay">
 
 

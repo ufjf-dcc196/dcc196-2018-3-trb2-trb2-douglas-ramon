@@ -1,4 +1,4 @@
-package br.ufjf.dcc196.trabalho1_ramon_douglas;
+package br.ufjf.dcc196.trabalho1_ramon_douglas.activitys;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import br.ufjf.dcc196.trabalho1_ramon_douglas.R;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.DbHelper;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.ParticipanteDAO;
 
 public class ParticipanteNovoActivity extends AppCompatActivity {
 

@@ -1,9 +1,11 @@
-package br.ufjf.dcc196.trabalho1_ramon_douglas;
+package br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import br.ufjf.dcc196.trabalho1_ramon_douglas.contratos.EventoContract;
 
 public class EventoDAO {
 
@@ -27,7 +29,7 @@ public class EventoDAO {
         banco = new DbHelper(context);
     }
 
-    public void valores_put(ContentValues v, String _titulo, String _descricao, String _facilitador, String _data, String _hora) {
+    public void putHelper(ContentValues v, String _titulo, String _descricao, String _facilitador, String _data, String _hora) {
         v.put(titulo, _titulo);
         v.put(descricao, _descricao);
         v.put(facilitador, _facilitador);
@@ -39,7 +41,7 @@ public class EventoDAO {
         long resultado;
         db = banco.getWritableDatabase();
 
-        valores_put(valores, _titulo, _descricao, _facilitador, _data, _hora);
+        putHelper(valores, _titulo, _descricao, _facilitador, _data, _hora);
         resultado = db.insert(tabela, null, valores);
         db.close();
 
@@ -76,7 +78,7 @@ public class EventoDAO {
     public void alteraRegistro(int _id, String _titulo, String _descricao, String _facilitador, String _data, String _hora) {
         String where = id + "=" + _id;
         db = banco.getWritableDatabase();
-        valores_put(valores, _titulo, _descricao, _facilitador, _data, _hora);
+        putHelper(valores, _titulo, _descricao, _facilitador, _data, _hora);
         db.update(tabela, valores, where, null);
         db.close();
     }

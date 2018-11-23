@@ -1,4 +1,4 @@
-package br.ufjf.dcc196.trabalho1_ramon_douglas;
+package br.ufjf.dcc196.trabalho1_ramon_douglas.activitys;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import br.ufjf.dcc196.trabalho1_ramon_douglas.modelo.Evento;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.adapter.ParticipanteAdapter;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.R;
 
 public class EventoDetalhesActivity extends AppCompatActivity {
 
