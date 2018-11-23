@@ -1,9 +1,6 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas;
 
-import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -42,14 +39,18 @@ public class ParticipanteNovoActivity extends AppCompatActivity {
         btnCadastrarParticipante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                ContentValues valores = new ContentValues();
-                valores.put(ParticipanteContract.Participante.COLUMN_NAME_NOME, edtNomeCompleto.getText().toString());
-                valores.put(ParticipanteContract.Participante.COLUMN_NAME_EMAIL, edtEmail.getText().toString());
-                valores.put(ParticipanteContract.Participante.COLUMN_NAME_CPF, edtCpf.getText().toString());
-                long id = db.insert(ParticipanteContract.Participante.COLUMN_NAME_ID, null, valores);
-                Intent intent = new Intent(ParticipanteNovoActivity.this, MainActivity.class);
-                startActivity(intent);
+
+                ParticipanteDAO crud = new ParticipanteDAO(getBaseContext());
+
+                String nome = edtNomeCompleto.getText().toString();
+                String email = edtEmail.getText().toString();
+                String cpf = edtCpf.getText().toString();
+
+
+                String resultado;
+                resultado = crud.insereDado(nome, email, cpf);
+
+                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
 
                 /* Código sem banco */

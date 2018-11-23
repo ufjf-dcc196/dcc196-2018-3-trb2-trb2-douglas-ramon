@@ -24,4 +24,7 @@ public class EventoContract {
             + ")";
 
     public final static String DROP_EVENTO = "DROP TABLE IF EXISTS " + Evento.TABLE_NAME;
+
+    public EventoContract() {
+    }
 }

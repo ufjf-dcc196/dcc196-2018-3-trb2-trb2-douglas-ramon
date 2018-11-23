@@ -8,11 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder> {
     private List<Evento> eventos;
@@ -33,12 +29,12 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtNome = (TextView) itemView.findViewById(R.id.item_nome);
-            itemView.setOnClickListener(new View.OnClickListener(){
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(listener != null) {
+                    if (listener != null) {
                         int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION) {
+                        if (position != RecyclerView.NO_POSITION) {
                             listener.onEventoClick(v, position);
                         }
                     }
@@ -62,9 +58,9 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder
 
         @Override
         public void onClick(View v) {
-            if(listener != null) {
+            if (listener != null) {
                 int position = getAdapterPosition();
-                if(position != RecyclerView.NO_POSITION) {
+                if (position != RecyclerView.NO_POSITION) {
                     listener.onEventoClick(v, position);
                 }
             }
@@ -73,9 +69,9 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder
 
         @Override
         public boolean onLongClick(View v) {
-            if(longClickListener != null) {
+            if (longClickListener != null) {
                 int position = getAdapterPosition();
-                if(position != RecyclerView.NO_POSITION) {
+                if (position != RecyclerView.NO_POSITION) {
                     longClickListener.onEventoLongClickListener(v, position);
                 }
             }

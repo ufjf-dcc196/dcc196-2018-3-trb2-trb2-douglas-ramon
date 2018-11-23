@@ -20,4 +20,7 @@ public class ParticipanteContract {
             + ")";
 
     public final static String DROP_PARTICIPANTE= "DROP TABLE IF EXISTS " + Participante.TABLE_NAME;
+
+    public ParticipanteContract() {
+    }
 }
