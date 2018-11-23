@@ -1,5 +1,6 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas.activitys;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.ufjf.dcc196.trabalho1_ramon_douglas.R;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.modelo.Evento;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.DbHelper;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.EventoDAO;
 
@@ -57,20 +59,8 @@ public class EventoNovoActivity extends AppCompatActivity {
                 String data = edtData.getText().toString();
                 String hora = edtHora.getText().toString();
 
-                String resultado;
-                resultado = crud.insereDado(titulo, descricao, facilitador, data, hora);
-
-                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
-
-
-                /* Código sem banco */
-                /*
+               crud.insereDado(titulo, descricao, facilitador, data, hora);
                 Intent resultadoEvento = new Intent();
-                String titulo = edtTitulo.getText().toString();
-                String descricao = edtDescricao.getText().toString();
-                String facilitador = edtFacilitador.getText().toString();
-                String data = edtData.getText().toString();
-                String hora = edtHora.getText().toString();
 
                 if(titulo.equals("") || descricao.equals("") || facilitador.equals("") || data.equals("") || hora.equals("")) {
                     Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
@@ -85,7 +75,7 @@ public class EventoNovoActivity extends AppCompatActivity {
                     setResult(Activity.RESULT_OK, resultadoEvento);
 
                     finish();
-                }*/
+                }
 
 
             }

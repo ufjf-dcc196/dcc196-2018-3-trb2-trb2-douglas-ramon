@@ -62,7 +62,7 @@ public class ParticipanteEditarActivity extends AppCompatActivity {
                 String cpf = edtCpf.getText().toString();
 
                 crud.alteraRegistro(posicao, nome, email, cpf);
-                Toast.makeText(getApplicationContext(), "Participante Alterado com Sucesso!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Participante atualizado com Sucesso!", Toast.LENGTH_LONG).show();
 
                 MainActivity.participantes.get(posicao).setCpf(cpf);
                 MainActivity.participantes.get(posicao).setEmail(email);

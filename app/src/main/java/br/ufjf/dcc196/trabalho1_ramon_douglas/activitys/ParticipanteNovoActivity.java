@@ -1,5 +1,6 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas.activitys;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.ufjf.dcc196.trabalho1_ramon_douglas.R;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.modelo.Participante;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.DbHelper;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.ParticipanteDAO;
 
@@ -50,19 +52,8 @@ public class ParticipanteNovoActivity extends AppCompatActivity {
                 String email = edtEmail.getText().toString();
                 String cpf = edtCpf.getText().toString();
 
-                String resultado;
-                resultado = crud.insereDado(nome, email, cpf);
-
-                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
-
-
-                /* Código sem banco */
-                /*
+                crud.insereDado(nome, email, cpf);
                 Intent resultadoParticipante = new Intent();
-
-                String nome = edtNomeCompleto.getText().toString();
-                String email = edtEmail.getText().toString();
-                String cpf = edtCpf.getText().toString();
 
                 if(nome.equals("") || email.equals("") || cpf.equals("")) {
                     Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
@@ -78,7 +69,6 @@ public class ParticipanteNovoActivity extends AppCompatActivity {
 
                     finish();
                 }
-                */
 
             }
         });
