@@ -84,32 +84,6 @@ public class EventoEditarActivity extends AppCompatActivity {
                 startActivity(resultadoEventoEditar);
 
 
-                /* Código sem banco */
-                /*
-                Intent resultadoEventoEditar = new Intent(EventoEditarActivity.this, EventoDetalhesActivity.class);
-                resultadoEventoEditar.putExtra("posicao", posicao);
-
-                String titulo = edtTitulo.getText().toString();
-                String facilitador = edtFacilitador.getText().toString();
-                String descricao = edtDescricao.getText().toString();
-                String data = edtData.getText().toString();
-                String hora = edtHora.getText().toString();
-
-                if(titulo.equals("") || descricao.equals("") || facilitador.equals("") || data.equals("") || hora.equals("")) {
-                    Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
-                    startActivity(resultadoEventoEditar);
-                } else {
-                    MainActivity.eventos.get(posicao).setTitulo(titulo);
-                    MainActivity.eventos.get(posicao).setFacilitador(facilitador);
-                    MainActivity.eventos.get(posicao).setFacilitador(descricao);
-                    MainActivity.eventos.get(posicao).setFacilitador(data);
-                    MainActivity.eventos.get(posicao).setFacilitador(hora);
-
-                    Toast.makeText(getApplicationContext(), "Evento atualizado com sucesso!", Toast.LENGTH_SHORT).show();
-                    startActivity(resultadoEventoEditar);
-                }
-                */
-
             }
         });
     }
