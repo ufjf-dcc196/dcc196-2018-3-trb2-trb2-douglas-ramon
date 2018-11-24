@@ -1,8 +1,10 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas.activitys;
+import android.content.ContentValues;
 import android.database.Cursor;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,12 +17,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.ufjf.dcc196.trabalho1_ramon_douglas.contratos.EventoContract;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.modelo.Evento;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.adapter.EventoAdapter;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.modelo.Participante;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.adapter.ParticipanteAdapter;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.R;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.contratos.ParticipanteContract;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.DbHelper;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.EventoDAO;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.ParticipanteDAO;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnNovoEvento;
     private RecyclerView rclParticipantes;
     private RecyclerView rclEventos;
+    private static DbHelper dbHelper;
 
     public static List<Participante> participantes = new ArrayList<Participante>() {{
         Participante p0 = new Participante("Ramon Larivoir", "rlarivoir@gmail.com", "11111111111");
@@ -83,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        dbHelper = new DbHelper(getApplicationContext());
         ParticipanteDAO crud = new ParticipanteDAO(getBaseContext());
         Cursor cursor = crud.carregaDados();
 
@@ -102,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
         rclParticipantes = (RecyclerView) findViewById(R.id.rcl_participantes);
         rclParticipantes.setLayoutManager(new LinearLayoutManager(this));
-        final ParticipanteAdapter participanteAdapter = new ParticipanteAdapter(participantes);
+        final ParticipanteAdapter participanteAdapter = new ParticipanteAdapter(getParticipantes());
         rclParticipantes.setAdapter(participanteAdapter);
 
         participanteAdapter.setOnParticipanteClickListener(new ParticipanteAdapter.OnParticipanteClickListener() {
@@ -145,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         rclEventos = (RecyclerView) findViewById(R.id.rcl_eventos);
         rclEventos.setLayoutManager(new LinearLayoutManager(this));
-        final EventoAdapter eventoAdapter = new EventoAdapter(eventos);
+        final EventoAdapter eventoAdapter = new EventoAdapter(getEventos());
         rclEventos.setAdapter(eventoAdapter);
 
         eventoAdapter.setOnEventoClickListener(new EventoAdapter.OnEventoClickListener() {
@@ -173,8 +180,8 @@ public class MainActivity extends AppCompatActivity {
             Bundle bundleResultadoParticipante = data.getExtras();
 
             Participante p = (Participante) bundleResultadoParticipante.getSerializable("participante");
-            participantes.add(p);
 
+            rclParticipantes.getAdapter().notifyDataSetChanged();
             Toast.makeText(getApplicationContext(), "Participante " + p.getNome() + " cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
         } else if (requestCode == MainActivity.REQUEST_EVENTO && resultCode == Activity.RESULT_OK && data != null) {
 
@@ -182,9 +189,28 @@ public class MainActivity extends AppCompatActivity {
 
             Evento e = (Evento) bundleResultadoEvento.getSerializable("evento");
 
-            eventos.add(e);
-            rclEventos.getAdapter().notifyItemInserted(eventos.size() - 1);
+            EventoDAO crud = new EventoDAO(getBaseContext());
+
+            crud.insereDado(e.getTitulo(), e.getDescricao(), e.getFacilitador(), e.getData(), e.getHora());
+
+            rclEventos.getAdapter().notifyDataSetChanged();
             Toast.makeText(getApplicationContext(), "Evento " + e.getTitulo() + " cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public static Cursor getEventos() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String[] visao = {
+                EventoContract.Evento.COLUMN_NAME_TITULO
+        };
+        return db.query(EventoContract.Evento.TABLE_NAME,visao,null,null,null,null,null);
+    }
+
+    public static Cursor getParticipantes() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String[] visao = {
+                ParticipanteContract.Participante.COLUMN_NAME_NOME
+        };
+        return db.query(ParticipanteContract.Participante.TABLE_NAME,visao,null,null,null,null,null);
     }
 }

@@ -1,6 +1,11 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas.contratos;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.util.Log;
+
+import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.DbHelper;
 
 public class ParticipanteContract {
 
@@ -23,4 +28,14 @@ public class ParticipanteContract {
 
     public ParticipanteContract() {
     }
+//
+//    public static void insereDadosPrimarios(DbHelper dbHelper) {
+//        SQLiteDatabase db = dbHelper.getWritableDatabase();
+//        ContentValues valores = new ContentValues();
+//        valores.put(Participante.COLUMN_NAME_NOME, "Ramon Larivoir");
+//        valores.put(Participante.COLUMN_NAME_CPF, "111111111");
+//        valores.put(Participante.COLUMN_NAME_EMAIL, "rlarivoir@gmail.com");
+//        long id = db.insert(Participante.TABLE_NAME, null, valores);
+//        Log.i("DBINFO", "registro criado com id: " + id + " - nome: " + valores.get(Participante.COLUMN_NAME_NOME) + " - email: " + valores.get(Participante.COLUMN_NAME_CPF) + " - CPF: " + valores.get(Participante.COLUMN_NAME_CPF));
+//    }
 }

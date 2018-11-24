@@ -1,6 +1,7 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas.adapter;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,12 +12,23 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.ufjf.dcc196.trabalho1_ramon_douglas.R;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.contratos.EventoContract;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.modelo.Evento;
 
 public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder> {
     private List<Evento> eventos;
     private OnEventoClickListener listener;
     private OnEventoLongClickListener longClickListener;
+    private Cursor cursor;
+
+    public EventoAdapter(Cursor cursor) {
+        this.cursor = cursor;
+    }
+
+    public void setCursor(Cursor cursor) {
+        this.cursor = cursor;
+        notifyDataSetChanged();
+    }
 
     public interface OnEventoClickListener {
         void onEventoClick(View view, int position);
@@ -95,12 +107,16 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.txtNome.setText(eventos.get(i).getTitulo());
+        int idxTitulo = cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_TITULO);
+        cursor.moveToPosition(i);
+        viewHolder.txtNome.setText(cursor.getString(idxTitulo));
+        //viewHolder.txtNome.setText(eventos.get(i).getTitulo());
     }
 
     @Override
     public int getItemCount() {
-        return eventos.size();
+        //return eventos.size();
+        return cursor.getCount();
     }
 
     public EventoAdapter(List<Evento> eventos) {

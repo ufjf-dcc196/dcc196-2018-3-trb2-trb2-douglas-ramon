@@ -1,6 +1,11 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas.contratos;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.util.Log;
+
+import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.DbHelper;
 
 public class EventoContract {
 
@@ -27,4 +32,17 @@ public class EventoContract {
 
     public EventoContract() {
     }
+//
+//    public static void insereDadosPrimarios(DbHelper dbHelper) {
+//        SQLiteDatabase db = dbHelper.getWritableDatabase();
+//        ContentValues valores = new ContentValues();
+//        valores.put(Evento.COLUMN_NAME_TITULO, "Curso Android");
+//        valores.put(Evento.COLUMN_NAME_FACILITADOR, "Igor Knop");
+//        valores.put(Evento.COLUMN_NAME_DESCRICAO, "Curso de introdução ao desenvolvimento android.");
+//        valores.put(Evento.COLUMN_NAME_DATA, "20/10/2018");
+//        valores.put(Evento.COLUMN_NAME_HORA, "20:00");
+//        long id = db.insert(Evento.TABLE_NAME, null, valores);
+//        Log.i("DBINFO", "registro criado com id: " + id);
+//        db.close();
+//    }
 }

@@ -51,7 +51,7 @@ public class EventoNovoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                EventoDAO crud = new EventoDAO(getBaseContext());
+//                EventoDAO crud = new EventoDAO(getBaseContext());
 
                 String titulo = edtTitulo.getText().toString();
                 String descricao = edtDescricao.getText().toString();
@@ -59,7 +59,7 @@ public class EventoNovoActivity extends AppCompatActivity {
                 String data = edtData.getText().toString();
                 String hora = edtHora.getText().toString();
 
-                crud.insereDado(titulo, descricao, facilitador, data, hora);
+//                crud.insereDado(titulo, descricao, facilitador, data, hora);
                 Intent resultadoEvento = new Intent();
 
                 if (titulo.equals("") || descricao.equals("") || facilitador.equals("") || data.equals("") || hora.equals("")) {

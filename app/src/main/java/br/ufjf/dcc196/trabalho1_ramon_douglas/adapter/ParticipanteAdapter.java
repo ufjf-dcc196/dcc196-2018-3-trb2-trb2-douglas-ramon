@@ -1,6 +1,7 @@
 package br.ufjf.dcc196.trabalho1_ramon_douglas.adapter;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,12 +12,22 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.ufjf.dcc196.trabalho1_ramon_douglas.R;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.contratos.ParticipanteContract;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.modelo.Participante;
 
 public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapter.ViewHolder> {
     private List<Participante> participantes;
     private OnParticipanteClickListener listener;
     private OnParticipanteLongClickListener longClickListener;
+    private Cursor cursor;
+
+    public ParticipanteAdapter(Cursor cursor) {
+        this.cursor = cursor;
+    }
+
+    public void setCursor(Cursor cursor) {
+        this.cursor = cursor;
+    }
 
     public interface OnParticipanteClickListener {
         void onParticipanteClick(View view, int position);
@@ -95,12 +106,16 @@ public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.txtNome.setText(participantes.get(i).getNome());
+//        viewHolder.txtNome.setText(participantes.get(i).getNome());
+        int idxTitulo = cursor.getColumnIndexOrThrow(ParticipanteContract.Participante.COLUMN_NAME_NOME);
+        cursor.moveToPosition(i);
+        viewHolder.txtNome.setText(cursor.getString(idxTitulo));
     }
 
     @Override
     public int getItemCount() {
-        return participantes.size();
+//        return participantes.size();
+        return cursor.getCount();
     }
 
     public ParticipanteAdapter(List<Participante> participantes) {
