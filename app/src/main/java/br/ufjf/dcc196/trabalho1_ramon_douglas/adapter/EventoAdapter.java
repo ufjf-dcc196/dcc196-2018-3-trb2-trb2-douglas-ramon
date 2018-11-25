@@ -107,16 +107,16 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        int idxTitulo = cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_TITULO);
-        cursor.moveToPosition(i);
-        viewHolder.txtNome.setText(cursor.getString(idxTitulo));
-        //viewHolder.txtNome.setText(eventos.get(i).getTitulo());
+//        int idxTitulo = cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_TITULO);
+//        cursor.moveToPosition(i);
+//        viewHolder.txtNome.setText(cursor.getString(idxTitulo));
+        viewHolder.txtNome.setText(eventos.get(i).getTitulo());
     }
 
     @Override
     public int getItemCount() {
-        //return eventos.size();
-        return cursor.getCount();
+        return eventos.size();
+//        return cursor.getCount();
     }
 
     public EventoAdapter(List<Evento> eventos) {

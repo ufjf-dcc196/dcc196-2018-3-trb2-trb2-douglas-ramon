@@ -19,6 +19,7 @@ public class Participante implements Serializable {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
+        this.eventos = new ArrayList<>();
     }
 
     public Participante(int id, String nome, String email, String cpf, List<Evento> eventos) {

@@ -73,10 +73,11 @@ public class ParticipanteDAO {
     public void alteraRegistro(int _id, String _nome, String _email, String _cpf) {
         String where;
         db = banco.getWritableDatabase();
-        where = id + "=" + _id;
+        where = id + " = ?";
+        String[] args = {String.valueOf(_id)};
 
         putHelper(valores, _nome, _email, _cpf);
-        db.update(tabela, valores, where, null);
+        db.update(tabela, valores, where, args);
         db.close();
     }
 }

@@ -61,12 +61,10 @@ public class ParticipanteEditarActivity extends AppCompatActivity {
                 String email = edtEmail.getText().toString();
                 String cpf = edtCpf.getText().toString();
 
-                crud.alteraRegistro(posicao, nome, email, cpf);
+                crud.alteraRegistro(MainActivity.participantes.get(posicao).getId(), nome, email, cpf);
                 Toast.makeText(getApplicationContext(), "Participante atualizado com Sucesso!", Toast.LENGTH_LONG).show();
 
-                MainActivity.participantes.get(posicao).setCpf(cpf);
-                MainActivity.participantes.get(posicao).setEmail(email);
-                MainActivity.participantes.get(posicao).setNome(nome);
+                MainActivity.participantes = MainActivity.listaParticipantes();
 
                 Intent resultadoParticipante = new Intent(ParticipanteEditarActivity.this, ParticipanteDetalhesActivity.class);
                 resultadoParticipante.putExtra("posicao", posicao);

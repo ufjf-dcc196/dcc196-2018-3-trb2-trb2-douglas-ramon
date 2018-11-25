@@ -106,16 +106,16 @@ public class ParticipanteAdapter extends RecyclerView.Adapter<ParticipanteAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-//        viewHolder.txtNome.setText(participantes.get(i).getNome());
-        int idxTitulo = cursor.getColumnIndexOrThrow(ParticipanteContract.Participante.COLUMN_NAME_NOME);
-        cursor.moveToPosition(i);
-        viewHolder.txtNome.setText(cursor.getString(idxTitulo));
+        viewHolder.txtNome.setText(participantes.get(i).getNome());
+//        int idxTitulo = cursor.getColumnIndexOrThrow(ParticipanteContract.Participante.COLUMN_NAME_NOME);
+//        cursor.moveToPosition(i);
+//        viewHolder.txtNome.setText(cursor.getString(idxTitulo));
     }
 
     @Override
     public int getItemCount() {
-//        return participantes.size();
-        return cursor.getCount();
+        return participantes.size();
+//        return cursor.getCount();
     }
 
     public ParticipanteAdapter(List<Participante> participantes) {
