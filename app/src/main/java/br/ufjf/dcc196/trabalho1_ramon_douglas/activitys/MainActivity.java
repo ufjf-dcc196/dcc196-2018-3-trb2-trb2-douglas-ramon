@@ -39,50 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rclEventos;
     private static DbHelper dbHelper;
 
-    public static List<Participante> participantes = new ArrayList<Participante>() {{
-        Participante p0 = new Participante("Ramon Larivoir", "rlarivoir@gmail.com", "11111111111");
-        Participante p1 = new Participante("Douglas Baumgratz", "douglas@gmail.com", "22222222222");
-//        Participante p2 = new Participante("Igor Knop", "igor@gmail.com", "3333333333");
-//        Participante p3 = new Participante("João da Silva", "joao@gmail.com", "44444444444");
-//        Participante p4 = new Participante("José de Souza", "jose@gmail.com", "55555555555");
-        add(p0);
-        add(p1);
-//        add(p2);
-//        add(p3);
-//        add(p4);
-    }};
+    public static List<Participante> participantes = new ArrayList<>();
 
-    public static List<Evento> eventos = new ArrayList<Evento>() {{
-        Evento e0 = new Evento("Curso Android", "Igor Knop", "20/10/2018", "20:00", "Curso de introdução ao desenvolvimento android.");
-        Evento e1 = new Evento("Palestra Igor", "Igor Knop", "21/10/2018", "17:00", "Palestra sobre clean code.");
-//        Evento e2 = new Evento("Curso Java", "Jairo Souza", "22/10/2018", "19:00", "Curso avançado de Java.");
-//        Evento e3 = new Evento("Mesa redonda", "Luciana Campos", "21/10/2018", "21:00", "Mesa redonda para debater as novas tendências do mercado.");
-        add(e0);
-        add(e1);
-//        add(e2);
-//        add(e3);
-//
-        e0.getParticipantes().add(participantes.get(0));
-        e1.getParticipantes().add(participantes.get(0));
-//        e1.getParticipantes().add(participantes.get(3));
-//        e2.getParticipantes().add(participantes.get(1));
-//        e2.getParticipantes().add(participantes.get(2));
-//        e2.getParticipantes().add(participantes.get(3));
-//        e3.getParticipantes().add(participantes.get(0));
-//        e3.getParticipantes().add(participantes.get(3));
-//        e3.getParticipantes().add(participantes.get(4));
-//
-        participantes.get(0).getEventos().add(e0);
-//        participantes.get(0).getEventos().add(e3);
-        participantes.get(0).getEventos().add(e1);
-//        participantes.get(1).getEventos().add(e2);
-//        participantes.get(2).getEventos().add(e2);
-//        participantes.get(3).getEventos().add(e3);
-//        participantes.get(3).getEventos().add(e1);
-//        participantes.get(4).getEventos().add(e3);
-//        participantes.get(4).getEventos().add(e2);
-
-    }};
+    public static List<Evento> eventos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,24 +51,9 @@ public class MainActivity extends AppCompatActivity {
         dbHelper = new DbHelper(getApplicationContext());
         final ParticipanteDAO crudParticipante = new ParticipanteDAO(getBaseContext());
         final EventoDAO crudEvento = new EventoDAO(getBaseContext());
-        Cursor cursor = crudParticipante.carregaDados();
 
         participantes = listaParticipantes();
         eventos = listaEventos();
-
-        String[] nomeCampos = new String[] {
-                ParticipanteContract.Participante.COLUMN_NAME_NOME,
-                ParticipanteContract.Participante.COLUMN_NAME_EMAIL,
-                ParticipanteContract.Participante.COLUMN_NAME_CPF
-        };
-
-        int[] idViews = new int[] {R.id.edt_nome_completo, R.id.edt_email, R.id.edt_cpf};
-
-//        SimpleCursorAdapter participanteAdapter = new SimpleCursorAdapter(getBaseContext(),
-//                R.layout.activity_main,cursor,nomeCampos,idViews, 0);
-
-//        lista = (ListView)findViewById(R.id.listView);
-//        lista.setAdapter(adaptador);
 
         rclParticipantes = (RecyclerView) findViewById(R.id.rcl_participantes);
         rclParticipantes.setLayoutManager(new LinearLayoutManager(this));
