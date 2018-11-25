@@ -52,13 +52,13 @@ public class ParticipanteNovoActivity extends AppCompatActivity {
                 String email = edtEmail.getText().toString();
                 String cpf = edtCpf.getText().toString();
 
-                crud.insereDado(nome, email, cpf);
 
                 Intent resultadoParticipante = new Intent();
                 if(nome.equals("") || email.equals("") || cpf.equals("")) {
                     Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
+                    crud.insereDado(nome, email, cpf);
                     Participante p = new Participante(nome, email, cpf);
 
                     Bundle bundle = new Bundle();

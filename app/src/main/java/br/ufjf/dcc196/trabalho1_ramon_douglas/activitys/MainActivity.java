@@ -184,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
 
             Participante p = (Participante) bundleResultadoParticipante.getSerializable("participante");
 
+            participantes.add(p);
             rclParticipantes.getAdapter().notifyDataSetChanged();
             Toast.makeText(getApplicationContext(), "Participante " + p.getNome() + " cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
         } else if (requestCode == MainActivity.REQUEST_EVENTO && resultCode == Activity.RESULT_OK && data != null) {
@@ -192,9 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
             Evento e = (Evento) bundleResultadoEvento.getSerializable("evento");
 
-            EventoDAO crud = new EventoDAO(getBaseContext());
-
-            crud.insereDado(e.getTitulo(), e.getDescricao(), e.getFacilitador(), e.getData(), e.getHora());
+            eventos.add(e);
 
             rclEventos.getAdapter().notifyDataSetChanged();
             Toast.makeText(getApplicationContext(), "Evento " + e.getTitulo() + " cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
@@ -224,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
             int id = cursor.getInt(cursor.getColumnIndexOrThrow(ParticipanteContract.Participante._ID));
             String nome = cursor.getString(cursor.getColumnIndexOrThrow(ParticipanteContract.Participante.COLUMN_NAME_NOME));
             String email = cursor.getString(cursor.getColumnIndexOrThrow(ParticipanteContract.Participante.COLUMN_NAME_EMAIL));
-            String cpf = cursor.getColumnName(cursor.getColumnIndexOrThrow(ParticipanteContract.Participante.COLUMN_NAME_CPF));
+            String cpf = cursor.getString(cursor.getColumnIndexOrThrow(ParticipanteContract.Participante.COLUMN_NAME_CPF));
             participantes.add(new Participante(id,nome,email,cpf));
         }
         return participantes;
@@ -235,11 +234,11 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = dbHelper.getReadableDatabase().rawQuery("select * from evento", null);
         while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndexOrThrow(EventoContract.Evento._ID));
-            String titulo = cursor.getColumnName(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_TITULO));
-            String facilitador = cursor.getColumnName(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_FACILITADOR));
-            String descricao = cursor.getColumnName(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_DESCRICAO));
-            String data = cursor.getColumnName(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_DATA));
-            String hora = cursor.getColumnName(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_HORA));
+            String titulo = cursor.getString(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_TITULO));
+            String facilitador = cursor.getString(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_FACILITADOR));
+            String descricao = cursor.getString(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_DESCRICAO));
+            String data = cursor.getString(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_DATA));
+            String hora = cursor.getString(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_HORA));
             eventos.add(new Evento(id,titulo,facilitador,data,hora,descricao));
         }
         return eventos;

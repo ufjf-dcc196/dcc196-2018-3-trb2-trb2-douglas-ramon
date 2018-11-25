@@ -80,6 +80,14 @@ public class ParticipanteDAO {
         db.update(tabela, valores, where, args);
         db.close();
     }
+
+    public void removeParticipante(int _id) {
+        String where = id + " = ?";
+        String[] args = {String.valueOf(_id)};
+        db = banco.getWritableDatabase();
+        db.delete(tabela, where, args);
+        db.close();
+    }
 }
 
 
