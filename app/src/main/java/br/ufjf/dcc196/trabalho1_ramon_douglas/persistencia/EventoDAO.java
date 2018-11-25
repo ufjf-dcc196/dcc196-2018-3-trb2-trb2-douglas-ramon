@@ -82,6 +82,14 @@ public class EventoDAO {
         db.update(tabela, valores, where, null);
         db.close();
     }
+
+    public void removeEvento(int _id) {
+        String where = id + " = ?";
+        String[] args = {String.valueOf(_id)};
+        db = banco.getWritableDatabase();
+        db.delete(tabela, where, args);
+        db.close();
+    }
 }
 
 

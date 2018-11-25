@@ -90,8 +90,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         dbHelper = new DbHelper(getApplicationContext());
-        ParticipanteDAO crud = new ParticipanteDAO(getBaseContext());
-        Cursor cursor = crud.carregaDados();
+        final ParticipanteDAO crudParticipante = new ParticipanteDAO(getBaseContext());
+        final EventoDAO crudEvento = new EventoDAO(getBaseContext());
+        Cursor cursor = crudParticipante.carregaDados();
 
         participantes = listaParticipantes();
         eventos = listaEventos();
@@ -126,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         participanteAdapter.setOnParticipanteLongClickListener(new ParticipanteAdapter.OnParticipanteLongClickListener() {
             @Override
             public void onParticipanteLongClickListener(View view, int position) {
+                crudParticipante.removeParticipante(participantes.get(position).getId());
                 participantes.remove(position);
                 participanteAdapter.notifyItemRemoved(position);
             }
@@ -169,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
         eventoAdapter.setOnEventoLongClickListener(new EventoAdapter.OnEventoLongClickListener() {
             @Override
             public void onEventoLongClickListener(View view, int position) {
+                crudEvento.removeEvento(eventos.get(position).getId());
                 eventos.remove(position);
                 eventoAdapter.notifyItemRemoved(position);
             }
