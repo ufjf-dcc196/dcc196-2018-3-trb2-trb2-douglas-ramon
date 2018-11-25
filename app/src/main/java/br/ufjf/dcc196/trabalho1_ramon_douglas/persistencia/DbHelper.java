@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import br.ufjf.dcc196.trabalho1_ramon_douglas.contratos.EventoContract;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.contratos.ParticipanteContract;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.contratos.ParticipanteEventoContract;
 
 public class DbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
@@ -20,6 +21,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(EventoContract.CREATE_EVENTO);
         sqLiteDatabase.execSQL(ParticipanteContract.CREATE_PARTICIPANTE);
+        sqLiteDatabase.execSQL(ParticipanteEventoContract.CREATE_PARTICIPANTE_EVENTO);
         insereDadosIniciais(sqLiteDatabase);
     }
 
@@ -27,6 +29,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL(ParticipanteContract.DROP_PARTICIPANTE);
         sqLiteDatabase.execSQL(EventoContract.DROP_EVENTO);
+        sqLiteDatabase.execSQL(ParticipanteEventoContract.DROP_PARTICIPANTE_EVENTO);
         onCreate(sqLiteDatabase);
     }
 
@@ -67,6 +70,24 @@ public class DbHelper extends SQLiteOpenHelper {
         valores4.put(ParticipanteContract.Participante.COLUMN_NAME_EMAIL, "douglas@gmail.com");
         valores4.put(ParticipanteContract.Participante.COLUMN_NAME_CPF, "222222222");
         sqLiteDatabase.insert(ParticipanteContract.Participante.TABLE_NAME, null, valores4);
+
+        //Participante Evento 1
+        ContentValues valores5 = new ContentValues();
+        valores5.put(ParticipanteEventoContract.ParticipanteEvento.COLUMN_NAME_ID_PARTICIPANTE, 1);
+        valores5.put(ParticipanteEventoContract.ParticipanteEvento.COLUMN_NAME_ID_EVENTO, 1);
+        sqLiteDatabase.insert(ParticipanteEventoContract.ParticipanteEvento.TABLE_NAME, null, valores5);
+
+        //Participante Evento 2
+        ContentValues valores6 = new ContentValues();
+        valores6.put(ParticipanteEventoContract.ParticipanteEvento.COLUMN_NAME_ID_PARTICIPANTE, 1);
+        valores6.put(ParticipanteEventoContract.ParticipanteEvento.COLUMN_NAME_ID_EVENTO, 2);
+        sqLiteDatabase.insert(ParticipanteEventoContract.ParticipanteEvento.TABLE_NAME, null, valores6);
+
+        //Participante Evento 1
+        ContentValues valores7 = new ContentValues();
+        valores7.put(ParticipanteEventoContract.ParticipanteEvento.COLUMN_NAME_ID_PARTICIPANTE, 2);
+        valores7.put(ParticipanteEventoContract.ParticipanteEvento.COLUMN_NAME_ID_EVENTO, 1);
+        sqLiteDatabase.insert(ParticipanteEventoContract.ParticipanteEvento.TABLE_NAME, null, valores7);
     }
 
 }
