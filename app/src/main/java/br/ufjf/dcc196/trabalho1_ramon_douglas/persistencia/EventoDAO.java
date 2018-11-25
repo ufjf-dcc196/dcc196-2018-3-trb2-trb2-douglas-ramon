@@ -76,10 +76,11 @@ public class EventoDAO {
     }
 
     public void alteraRegistro(int _id, String _titulo, String _descricao, String _facilitador, String _data, String _hora) {
-        String where = id + "=" + _id;
+        String where = id + " = ?";
+        String[] args = {String.valueOf(_id)};
         db = banco.getWritableDatabase();
         putHelper(valores, _titulo, _descricao, _facilitador, _data, _hora);
-        db.update(tabela, valores, where, null);
+        db.update(tabela, valores, where, args);
         db.close();
     }
 

@@ -69,7 +69,7 @@ public class EventoEditarActivity extends AppCompatActivity {
                 String data = edtData.getText().toString();
                 String hora = edtHora.getText().toString();
 
-                crud.alteraRegistro(posicao, titulo, descricao, facilitador, data, hora);
+                crud.alteraRegistro(MainActivity.eventos.get(posicao).getId(), titulo, descricao, facilitador, data, hora);
                 Toast.makeText(getApplicationContext(), "Evento atualizado com Sucesso!", Toast.LENGTH_LONG).show();
 
                 MainActivity.eventos.get(posicao).setTitulo(titulo);
