@@ -72,11 +72,7 @@ public class EventoEditarActivity extends AppCompatActivity {
                 crud.alteraRegistro(MainActivity.eventos.get(posicao).getId(), titulo, descricao, facilitador, data, hora);
                 Toast.makeText(getApplicationContext(), "Evento atualizado com Sucesso!", Toast.LENGTH_LONG).show();
 
-                MainActivity.eventos.get(posicao).setTitulo(titulo);
-                MainActivity.eventos.get(posicao).setFacilitador(facilitador);
-                MainActivity.eventos.get(posicao).setFacilitador(descricao);
-                MainActivity.eventos.get(posicao).setFacilitador(data);
-                MainActivity.eventos.get(posicao).setFacilitador(hora);
+                MainActivity.eventos = MainActivity.listaEventos();
 
 
                 Intent resultadoEventoEditar = new Intent(EventoEditarActivity.this, EventoDetalhesActivity.class);
