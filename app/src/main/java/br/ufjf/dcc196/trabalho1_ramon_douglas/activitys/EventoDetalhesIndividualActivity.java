@@ -11,6 +11,7 @@ import android.widget.Toast;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.modelo.Evento;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.modelo.Participante;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.R;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.ParticipanteEventoDAO;
 
 public class EventoDetalhesIndividualActivity extends AppCompatActivity {
 
@@ -65,8 +66,10 @@ public class EventoDetalhesIndividualActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Participante já está inscrito neste evento", Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 } else {
-                    MainActivity.eventos.get(posicao).getParticipantes().add(p);
-                    MainActivity.participantes.get(idParticipante).getEventos().add(e);
+                    ParticipanteEventoDAO crud = new ParticipanteEventoDAO(getBaseContext());
+                    crud.insereDado(String.valueOf(p.getId()), String.valueOf(e.getId()));
+                    MainActivity.eventos = MainActivity.listaEventos();
+                    MainActivity.participantes = MainActivity.listaParticipantes();
                     Toast.makeText(getApplicationContext(), "Inscrito com sucesso!", Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }

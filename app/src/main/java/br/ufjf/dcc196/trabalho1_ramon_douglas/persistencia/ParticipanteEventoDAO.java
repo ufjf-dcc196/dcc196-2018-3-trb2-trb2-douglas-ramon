@@ -86,6 +86,14 @@ public class ParticipanteEventoDAO {
         db.delete(tabela, where, args);
         db.close();
     }
+
+    public void removeEvento(int _id_participante, int _id_evento) {
+        String where = id_participante + " = " + _id_participante + " and " + id_evento + " = " + _id_evento;
+        String[] args = {String.valueOf(_id_participante), String.valueOf(_id_evento)};
+        db = banco.getWritableDatabase();
+        db.delete(tabela, where, null);
+        db.close();
+    }
 }
 
 

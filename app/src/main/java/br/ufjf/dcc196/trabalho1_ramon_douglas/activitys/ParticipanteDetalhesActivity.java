@@ -13,6 +13,7 @@ import android.widget.Toast;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.adapter.EventoAdapter;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.modelo.Participante;
 import br.ufjf.dcc196.trabalho1_ramon_douglas.R;
+import br.ufjf.dcc196.trabalho1_ramon_douglas.persistencia.ParticipanteEventoDAO;
 
 public class ParticipanteDetalhesActivity extends AppCompatActivity {
 
@@ -59,8 +60,10 @@ public class ParticipanteDetalhesActivity extends AppCompatActivity {
             @Override
             public void onEventoLongClickListener(View view, int position) {
                 int idEvento = MainActivity.eventos.indexOf(p.getEventos().get(position));
-                MainActivity.eventos.get(idEvento).getParticipantes().remove(p);
-                MainActivity.participantes.get(posicao).getEventos().remove(position);
+                ParticipanteEventoDAO crud = new ParticipanteEventoDAO(getBaseContext());
+                crud.removeEvento(p.getId(), idEvento);
+                MainActivity.eventos = MainActivity.listaEventos();
+                MainActivity.participantes = MainActivity.listaParticipantes();
                 Toast.makeText(getApplicationContext(),"Evento removido com sucesso!", Toast.LENGTH_SHORT).show();
                 eventoAdapter.notifyItemRemoved(position);
             }
