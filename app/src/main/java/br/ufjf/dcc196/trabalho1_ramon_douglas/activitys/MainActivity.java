@@ -171,7 +171,9 @@ public class MainActivity extends AppCompatActivity {
             String nome = cursor.getString(cursor.getColumnIndexOrThrow(ParticipanteContract.Participante.COLUMN_NAME_NOME));
             String email = cursor.getString(cursor.getColumnIndexOrThrow(ParticipanteContract.Participante.COLUMN_NAME_EMAIL));
             String cpf = cursor.getString(cursor.getColumnIndexOrThrow(ParticipanteContract.Participante.COLUMN_NAME_CPF));
-            participantes.add(new Participante(id,nome,email,cpf));
+            Participante p = new Participante(id,nome,email,cpf);
+            p.setEventos(listaEventosParticipante(p.getId()));
+            participantes.add(p);
         }
         return participantes;
     }
@@ -186,8 +188,42 @@ public class MainActivity extends AppCompatActivity {
             String descricao = cursor.getString(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_DESCRICAO));
             String data = cursor.getString(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_DATA));
             String hora = cursor.getString(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_HORA));
+            Evento e = new Evento(id,titulo,facilitador,data,hora,descricao);
+            e.setParticipantes(listaParticipantesEvento(e.getId()));
+            eventos.add(e);
+        }
+        return eventos;
+    }
+
+    public static List<Evento> listaEventosParticipante(int id_participante) {
+        List<Evento> eventos = new ArrayList<>();
+        String[] args = {String.valueOf(id_participante)};
+        Cursor cursor = dbHelper.getReadableDatabase().rawQuery("select * from evento as e join participante_evento as pe on e._id = pe.id_evento where pe.id_participante = ?", args);
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow(EventoContract.Evento._ID));
+            String titulo = cursor.getString(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_TITULO));
+            String facilitador = cursor.getString(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_FACILITADOR));
+            String descricao = cursor.getString(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_DESCRICAO));
+            String data = cursor.getString(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_DATA));
+            String hora = cursor.getString(cursor.getColumnIndexOrThrow(EventoContract.Evento.COLUMN_NAME_HORA));
             eventos.add(new Evento(id,titulo,facilitador,data,hora,descricao));
         }
         return eventos;
+    }
+
+    public static List<Participante> listaParticipantesEvento(int id_evento) {
+        List<Participante> participantes = new ArrayList<>();
+        String[] args = {String.valueOf(id_evento)};
+        Cursor cursor = dbHelper.getReadableDatabase().rawQuery("select * from participante as p join participante_evento as pe on p._id = pe.id_participante where pe.id_evento = ?", args);
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow(ParticipanteContract.Participante._ID));
+            String nome = cursor.getString(cursor.getColumnIndexOrThrow(ParticipanteContract.Participante.COLUMN_NAME_NOME));
+            String email = cursor.getString(cursor.getColumnIndexOrThrow(ParticipanteContract.Participante.COLUMN_NAME_EMAIL));
+            String cpf = cursor.getString(cursor.getColumnIndexOrThrow(ParticipanteContract.Participante.COLUMN_NAME_CPF));
+            Participante p = new Participante(id,nome,email,cpf);
+            p.setEventos(listaEventosParticipante(p.getId()));
+            participantes.add(p);
+        }
+        return participantes;
     }
 }

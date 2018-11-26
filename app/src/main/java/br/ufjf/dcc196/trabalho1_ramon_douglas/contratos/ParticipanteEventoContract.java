@@ -15,7 +15,7 @@ public class ParticipanteEventoContract {
             + ParticipanteEvento.COLUMN_NAME_ID_PARTICIPANTE + " INTEGER, "
             + ParticipanteEvento.COLUMN_NAME_ID_EVENTO + " INTEGER, "
             + "FOREIGN KEY (" + ParticipanteEvento.COLUMN_NAME_ID_PARTICIPANTE + ") REFERENCES " + ParticipanteContract.Participante.TABLE_NAME + "(" + ParticipanteContract.Participante._ID + "), "
-            + "FOREIGN KEY (" + ParticipanteEvento.COLUMN_NAME_ID_EVENTO + ") REFERENCES " + EventoContract.Evento.TABLE_NAME + "(" + EventoContract.Evento._ID + ")";
+            + "FOREIGN KEY (" + ParticipanteEvento.COLUMN_NAME_ID_EVENTO + ") REFERENCES " + EventoContract.Evento.TABLE_NAME + "(" + EventoContract.Evento._ID + "))";
 
     public final static String DROP_PARTICIPANTE_EVENTO= "DROP TABLE IF EXISTS " + ParticipanteEvento.TABLE_NAME;
 
